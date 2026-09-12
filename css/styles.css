@@ -267,30 +267,40 @@ section {
 }
 
 .logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1.5rem;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 1.7rem;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: #ffffff;
+  transition: var(--transition-fast);
 }
 
-.logo-icon {
-  width: 34px;
-  height: 34px;
-  background: linear-gradient(135deg, var(--accent-teal), #0284c7);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #08111e;
-  font-weight: 900;
-  font-size: 1.1rem;
+.logo:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
 }
 
-.logo-dot {
-  color: var(--accent-teal);
+.logo-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--font-family);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.logo-green {
+  color: #17b978;
+  font-weight: 800;
+}
+
+.logo-blue {
+  color: #38bdf8;
+  font-weight: 800;
+  background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .nav-desktop {

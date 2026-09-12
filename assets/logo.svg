@@ -1,0 +1,13 @@
+<svg width="680" height="200" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>Asqek logo</title>
+  <desc>A wordmark logo reading Asqek, with the letter A in green and the remaining letters in blue.</desc>
+  <style>
+    .word { font-family: 'Plus Jakarta Sans', Arial, Helvetica, sans-serif; font-weight: 700; }
+    .blue { fill: #1652f0; }
+    .green { fill: #17b978; }
+  </style>
+  <rect width="680" height="200" fill="#ffffff" rx="16"/>
+  <text x="60" y="130" class="word" font-size="100">
+    <tspan class="green">A</tspan><tspan class="blue">sqek</tspan>
+  </text>
+</svg>
