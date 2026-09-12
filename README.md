@@ -1,4 +1,4 @@
-# Asqek — Professional Web Development
+# Asqek | Professional Web Development
 
 Modern, responsive one-page landing page website for **Asqek**, a web development service offering high-converting business websites.
 
