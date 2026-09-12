@@ -58,6 +58,69 @@
   --shadow-glow: 0 12px 32px -6px rgba(22, 82, 240, 0.16);
 }
 
+/* ==========================================================================
+   Dark Theme Token Variables
+   ========================================================================== */
+[data-theme="dark"] {
+  /* Surface & Background Colors */
+  --bg-primary: #090d16;
+  --bg-secondary: #0e1526;
+  --bg-tertiary: #131c33;
+  
+  --card-bg: #111a2e;
+  --card-border: rgba(255, 255, 255, 0.09);
+  --card-hover-border: rgba(59, 130, 246, 0.5);
+
+  /* Typography Colors */
+  --text-main: #f8fafc;
+  --text-body: #94a3b8;
+  --text-muted: #64748b;
+  --text-subtle: #475569;
+
+  /* Brand Accents adjusted for dark backgrounds */
+  --brand-blue: #3b82f6;
+  --brand-blue-hover: #2563eb;
+  --brand-blue-light: rgba(59, 130, 246, 0.12);
+  --brand-blue-border: rgba(59, 130, 246, 0.3);
+
+  --accent-teal: #10b981;
+  --accent-teal-hover: #059669;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 20px 35px -10px rgba(0, 0, 0, 0.6), 0 4px 12px -2px rgba(0, 0, 0, 0.3);
+  --shadow-subtle: var(--shadow-md);
+  --shadow-glow: 0 12px 32px -6px rgba(59, 130, 246, 0.25);
+}
+
+/* ==========================================================================
+   View Transitions API Styles for Circular Radial Reveal
+   ========================================================================== */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* Fallback Radial Reveal Overlay */
+.theme-reveal-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  clip-path: circle(0% at 0 0);
+  will-change: clip-path, opacity;
+}
+
 /* Reset & Base Styles */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -374,6 +437,68 @@ section {
 .nav-cta {
   display: flex;
   align-items: center;
+  gap: 14px;
+}
+
+/* ==========================================================================
+   Dark / Light Mode Toggle Button
+   ========================================================================== */
+.theme-toggle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--card-border);
+  background: var(--bg-tertiary);
+  color: var(--text-main);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+  flex-shrink: 0;
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--brand-blue);
+  color: var(--brand-blue);
+  transform: scale(1.08) rotate(15deg);
+  box-shadow: 0 2px 12px rgba(22, 82, 240, 0.15);
+}
+
+.theme-toggle-btn:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+.theme-icon {
+  display: block;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+/* Sun / Moon Display States */
+.sun-icon {
+  display: none;
+}
+
+.moon-icon {
+  display: block;
+}
+
+[data-theme="dark"] .sun-icon {
+  display: block;
+  color: #fbbf24;
+}
+
+[data-theme="dark"] .moon-icon {
+  display: none;
+}
+
+.header-mobile-actions {
+  display: none;
+  align-items: center;
+  gap: 10px;
 }
 
 .mobile-menu-btn {
@@ -1462,6 +1587,10 @@ section {
     display: none;
   }
 
+  .header-mobile-actions {
+    display: flex;
+  }
+
   .mobile-menu-btn {
     display: flex;
     align-items: center;
@@ -1541,4 +1670,258 @@ section {
     font-size: 0.775rem;
     padding: 6px 14px;
   }
+}
+
+/* ==========================================================================
+   Comprehensive Dark Theme Component Overrides
+   ========================================================================== */
+[data-theme="dark"] body {
+  scrollbar-color: #1e293b #090d16;
+}
+
+[data-theme="dark"] body::before {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.09) 0%, rgba(9, 13, 22, 0) 70%);
+}
+
+[data-theme="dark"] body::after {
+  background: radial-gradient(circle, rgba(23, 185, 120, 0.06) 0%, rgba(9, 13, 22, 0) 70%);
+}
+
+/* Header & Nav */
+[data-theme="dark"] .header {
+  background-color: rgba(9, 13, 22, 0.85);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .header.scrolled {
+  background-color: rgba(9, 13, 22, 0.95);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .logo-blue {
+  color: #3b82f6;
+}
+
+[data-theme="dark"] .theme-toggle-btn {
+  background: #131c33;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .theme-toggle-btn:hover {
+  background: #192542;
+  border-color: #3b82f6;
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.3);
+}
+
+[data-theme="dark"] .mobile-menu-btn {
+  background: #131c33;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .mobile-nav-drawer {
+  background: rgba(9, 13, 22, 0.98);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .mobile-nav-links a {
+  background: #111a2e;
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .mobile-nav-links a:hover {
+  background: rgba(59, 130, 246, 0.18);
+  color: #3b82f6;
+}
+
+/* Buttons */
+[data-theme="dark"] .btn-secondary {
+  background: #131c33;
+  color: #f8fafc;
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background: #192542;
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Hero Section */
+[data-theme="dark"] .hero-section {
+  background: transparent;
+}
+
+[data-theme="dark"] .urgency-badge {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.12);
+}
+
+[data-theme="dark"] .hero-card-preview {
+  background: #111a2e;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55), 0 0 35px rgba(59, 130, 246, 0.1);
+}
+
+[data-theme="dark"] .browser-bar {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .browser-address {
+  background: #090d16;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .browser-content {
+  background: linear-gradient(180deg, #111a2e 0%, #0c1322 100%);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .mock-feature-pill {
+  background: #162238;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .floating-tag {
+  background: #131c33;
+  color: #f8fafc;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* How It Works (Step Cards) */
+[data-theme="dark"] .step-card {
+  background: #111a2e;
+  border-color: var(--card-border);
+}
+
+[data-theme="dark"] .step-card:hover {
+  border-color: var(--brand-green);
+  box-shadow: var(--shadow-lg), 0 0 25px rgba(23, 185, 120, 0.18);
+}
+
+[data-theme="dark"] .step-number {
+  color: rgba(255, 255, 255, 0.12);
+}
+
+/* Why Us (Feature Cards) */
+[data-theme="dark"] .feature-card {
+  background: #111a2e;
+  border-color: var(--card-border);
+}
+
+[data-theme="dark"] .feature-card:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: var(--shadow-lg), 0 0 25px rgba(59, 130, 246, 0.15);
+}
+
+/* Pricing Card */
+[data-theme="dark"] .pricing-card {
+  background: #111a2e;
+  border-color: #3b82f6;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.65), 0 0 35px rgba(59, 130, 246, 0.18);
+}
+
+[data-theme="dark"] .pricing-header {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Portfolio Cards */
+[data-theme="dark"] .portfolio-card {
+  background: #111a2e;
+  border-color: var(--card-border);
+}
+
+[data-theme="dark"] .portfolio-preview {
+  background: #0e1526;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .mock-preview-art {
+  background: #111a2e;
+}
+
+[data-theme="dark"] .mock-preview-badge {
+  background: rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .mock-line-title {
+  background: #334155;
+}
+
+[data-theme="dark"] .mock-line-sub,
+[data-theme="dark"] .mock-line-sub-sm {
+  background: #1e293b;
+}
+
+/* Contact / Form Section */
+[data-theme="dark"] .contact-card {
+  background: #111a2e;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .contact-form {
+  background: #0c1322;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-textarea {
+  background: #152038;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .form-input:focus,
+[data-theme="dark"] .form-textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+[data-theme="dark"] .form-input::placeholder,
+[data-theme="dark"] .form-textarea::placeholder {
+  color: #64748b;
+}
+
+[data-theme="dark"] .contact-alt-divider::before,
+[data-theme="dark"] .contact-alt-divider::after {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Footer */
+[data-theme="dark"] .footer {
+  background: #070a12;
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .footer-top {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .social-link {
+  background: #111a2e;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .social-link:hover {
+  background: #192542;
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+[data-theme="dark"] .toast-notice {
+  background: #152038;
+  border-color: var(--brand-green);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }

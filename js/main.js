@@ -159,4 +159,133 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // 7. Dark / Light Mode Toggle with Radial Reveal Animation
+  let currentTheme = 'light';
+  let isThemeTransitioning = false;
+
+  const applyTheme = (theme) => {
+    currentTheme = theme;
+    if (theme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+
+    const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
+    toggleBtns.forEach(btn => {
+      const nextLabel = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+      btn.setAttribute('aria-label', nextLabel);
+      btn.setAttribute('title', nextLabel);
+    });
+  };
+
+  const handleThemeToggle = (event) => {
+    if (isThemeTransitioning) return;
+    isThemeTransitioning = true;
+
+    const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+    // Calculate click coordinates for radial origin
+    let x, y;
+    if (event && (event.clientX !== undefined && event.clientY !== undefined) && (event.clientX !== 0 || event.clientY !== 0)) {
+      x = event.clientX;
+      y = event.clientY;
+    } else {
+      const target = event?.currentTarget || document.getElementById('themeToggleBtn');
+      if (target) {
+        const rect = target.getBoundingClientRect();
+        x = rect.left + rect.width / 2;
+        y = rect.top + rect.height / 2;
+      } else {
+        x = window.innerWidth / 2;
+        y = 0;
+      }
+    }
+
+    // End radius to the farthest corner of the viewport
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    // Check for native View Transitions API support
+    if (typeof document.startViewTransition === 'function') {
+      const transition = document.startViewTransition(() => {
+        applyTheme(nextTheme);
+      });
+
+      transition.ready.then(() => {
+        const anim = document.documentElement.animate(
+          {
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${endRadius}px at ${x}px ${y}px)`
+            ]
+          },
+          {
+            duration: 500,
+            easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+            pseudoElement: '::view-transition-new(root)'
+          }
+        );
+
+        anim.onfinish = () => {
+          isThemeTransitioning = false;
+        };
+      }).catch(() => {
+        applyTheme(nextTheme);
+        isThemeTransitioning = false;
+      });
+    } else {
+      // Clean fallback for browsers without View Transitions API
+      runFallbackReveal(x, y, endRadius, nextTheme);
+    }
+  };
+
+  const runFallbackReveal = (x, y, endRadius, nextTheme) => {
+    let overlay = document.getElementById('themeRevealOverlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'themeRevealOverlay';
+      overlay.className = 'theme-reveal-overlay';
+      document.body.appendChild(overlay);
+    }
+
+    const targetBg = nextTheme === 'dark' ? '#090d16' : '#ffffff';
+    overlay.style.backgroundColor = targetBg;
+    overlay.style.opacity = '1';
+
+    const expandAnim = overlay.animate(
+      [
+        { clipPath: `circle(0px at ${x}px ${y}px)` },
+        { clipPath: `circle(${endRadius}px at ${x}px ${y}px)` }
+      ],
+      {
+        duration: 480,
+        easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        fill: 'forwards'
+      }
+    );
+
+    expandAnim.onfinish = () => {
+      applyTheme(nextTheme);
+
+      const fadeAnim = overlay.animate(
+        [{ opacity: 1 }, { opacity: 0 }],
+        { duration: 160, easing: 'ease-out' }
+      );
+
+      fadeAnim.onfinish = () => {
+        overlay.style.opacity = '0';
+        overlay.style.clipPath = 'circle(0% at 0 0)';
+        isThemeTransitioning = false;
+      };
+    };
+  };
+
+  const themeToggleBtns = document.querySelectorAll('.theme-toggle-btn');
+  themeToggleBtns.forEach(btn => {
+    btn.addEventListener('click', handleThemeToggle);
+  });
 });
