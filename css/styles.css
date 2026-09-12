@@ -94,12 +94,14 @@
 }
 
 /* ==========================================================================
-   View Transitions API Styles for Circular Radial Reveal
+   View Transitions API Styles for Ripple Reveal
    ========================================================================== */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+  height: 100%;
+  overflow: clip;
 }
 
 ::view-transition-old(root) {
@@ -110,58 +112,51 @@
   z-index: 9999;
 }
 
-/* ==========================================================================
-   Slow Rippling Theme Reveal Overlay Styles
-   ========================================================================== */
-.theme-ripple-overlay {
+/* Fallback Cloned Overlay Styles (Full content rendered, never blank) */
+.theme-clone-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
+  overflow: hidden;
+  clip-path: circle(0% at 0 0);
+  will-change: clip-path;
+  background-color: var(--bg-primary);
+}
+
+.theme-clone-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Ripple Wave Crest Rings (Transparent center, luminous border) */
+.theme-ripple-rings {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 99999;
-  visibility: hidden;
+  z-index: 2147483647;
   overflow: hidden;
-  contain: strict;
 }
 
-.theme-ripple-overlay.active {
-  visibility: visible;
-}
-
-.ripple-wave {
-  position: absolute;
-  inset: 0;
-  will-change: clip-path, opacity;
-  pointer-events: none;
-  clip-path: circle(0% at 0 0);
-}
-
-.ripple-leading {
-  z-index: 1;
-}
-
-.ripple-trailing-1 {
-  z-index: 2;
-}
-
-.ripple-main {
-  z-index: 3;
-}
-
-.ripple-ring-crest {
+.ripple-ring {
   position: absolute;
   border-radius: 50%;
+  border: 2px solid var(--brand-blue);
+  background: transparent !important;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  opacity: 0;
   will-change: width, height, opacity;
+  opacity: 0;
 }
 
-.ripple-ring-crest-1 {
-  z-index: 4;
-}
-
-.ripple-ring-crest-2 {
-  z-index: 5;
+.ripple-ring.trailing {
+  border-width: 1.5px;
 }
 
 /* Reset & Base Styles */
