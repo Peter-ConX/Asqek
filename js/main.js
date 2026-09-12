@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.appendChild(toast);
     }
     toast.innerHTML = `
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#06d6a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17b978" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
         <polyline points="22 4 12 14.01 9 11.01"></polyline>
       </svg>
@@ -133,4 +133,30 @@ document.addEventListener('DOMContentLoaded', () => {
       toast.classList.remove('show');
     }, 3500);
   };
+
+  // 6. Contact Form Submission Handler
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const businessName = document.getElementById('businessName')?.value.trim() || '';
+      const businessAbout = document.getElementById('businessAbout')?.value.trim() || '';
+      const websiteNeeds = document.getElementById('websiteNeeds')?.value.trim() || '';
+      const callTiming = document.getElementById('callTiming')?.value.trim() || '';
+
+      const subject = encodeURIComponent(`Website Inquiry from ${businessName}`);
+      const body = encodeURIComponent(
+        `Business Name: ${businessName}\n\n` +
+        `What I do / what my business is about:\n${businessAbout}\n\n` +
+        `Short description of what I need for the website:\n${websiteNeeds}\n\n` +
+        `Best days/times for a quick call:\n${callTiming}\n`
+      );
+
+      window.location.href = `mailto:asqekcompany@gmail.com?subject=${subject}&body=${body}`;
+
+      if (window.showToast) {
+        window.showToast("Opening your email client to send details to Asqek...");
+      }
+    });
+  }
 });
