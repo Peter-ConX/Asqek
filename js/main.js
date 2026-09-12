@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. Dark / Light Mode Toggle with Radial Reveal Animation
+  // 7. Dark / Light Mode Toggle with Slow Rippling Reveal Animation
   let currentTheme = 'light';
   let isThemeTransitioning = false;
 
@@ -180,13 +180,166 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  const handleThemeToggle = (event) => {
+  const runSlowRippleTransition = (x, y) => {
     if (isThemeTransitioning) return;
     isThemeTransitioning = true;
 
     const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
 
-    // Calculate click coordinates for radial origin
+    // 1. Calculate maximum distance from (x, y) to the farthest viewport corner
+    const maxCornerDist = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+    // Expand to 135% to ensure full corner submersion and comfortable overlap
+    const endRadius = Math.ceil(maxCornerDist * 1.35);
+
+    // 2. Get or create the ripple overlay container
+    let overlay = document.getElementById('themeRippleOverlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'themeRippleOverlay';
+      overlay.className = 'theme-ripple-overlay';
+      overlay.innerHTML = `
+        <div class="ripple-wave ripple-leading" id="rippleLeading"></div>
+        <div class="ripple-wave ripple-trailing-1" id="rippleTrailing1"></div>
+        <div class="ripple-wave ripple-main" id="rippleMain"></div>
+        <div class="ripple-ring-crest ripple-ring-crest-1" id="rippleCrest1"></div>
+        <div class="ripple-ring-crest ripple-ring-crest-2" id="rippleCrest2"></div>
+      `;
+      document.body.appendChild(overlay);
+    }
+
+    const leadingLayer = overlay.querySelector('#rippleLeading');
+    const trailingLayer = overlay.querySelector('#rippleTrailing1');
+    const mainLayer = overlay.querySelector('#rippleMain');
+    const crest1 = overlay.querySelector('#rippleCrest1');
+    const crest2 = overlay.querySelector('#rippleCrest2');
+
+    // Colors tailored to the incoming theme
+    const targetBg = nextTheme === 'dark' ? '#090d16' : '#ffffff';
+    const crestColor1 = nextTheme === 'dark' ? 'rgba(96, 165, 250, 0.75)' : 'rgba(245, 158, 11, 0.75)';
+    const crestGlow1 = nextTheme === 'dark' ? 'rgba(59, 130, 246, 0.45)' : 'rgba(245, 158, 11, 0.45)';
+    const crestColor2 = nextTheme === 'dark' ? 'rgba(59, 130, 246, 0.6)' : 'rgba(22, 82, 240, 0.5)';
+
+    // Configure layer backgrounds and concentric opacities
+    leadingLayer.style.backgroundColor = targetBg;
+    leadingLayer.style.opacity = '0.35';
+
+    trailingLayer.style.backgroundColor = targetBg;
+    trailingLayer.style.opacity = '0.68';
+
+    mainLayer.style.backgroundColor = targetBg;
+    mainLayer.style.opacity = '1.0';
+
+    if (crest1) {
+      crest1.style.left = `${x}px`;
+      crest1.style.top = `${y}px`;
+      crest1.style.border = `2px solid ${crestColor1}`;
+      crest1.style.boxShadow = `0 0 20px ${crestGlow1}, inset 0 0 12px ${crestGlow1}`;
+    }
+
+    if (crest2) {
+      crest2.style.left = `${x}px`;
+      crest2.style.top = `${y}px`;
+      crest2.style.border = `1.5px solid ${crestColor2}`;
+      crest2.style.boxShadow = `0 0 16px ${crestColor2}`;
+    }
+
+    overlay.classList.add('active');
+
+    // Organic water ripple deceleration curve
+    const rippleEasing = 'cubic-bezier(0.22, 1, 0.36, 1)';
+    const rippleDuration = 1350; // 1.35s slow, organic duration (1.2s - 1.5s range)
+
+    // Ring 1: Leading Wavefront (starts at 0ms)
+    leadingLayer.animate(
+      [
+        { clipPath: `circle(0px at ${x}px ${y}px)` },
+        { clipPath: `circle(${endRadius}px at ${x}px ${y}px)` }
+      ],
+      {
+        duration: rippleDuration,
+        easing: rippleEasing,
+        fill: 'forwards'
+      }
+    );
+
+    // Ring 2: Trailing Wave 1 (delayed 90ms, creating a trailing concentric ripple ring)
+    trailingLayer.animate(
+      [
+        { clipPath: `circle(0px at ${x}px ${y}px)` },
+        { clipPath: `circle(${endRadius}px at ${x}px ${y}px)` }
+      ],
+      {
+        duration: rippleDuration,
+        delay: 90,
+        easing: rippleEasing,
+        fill: 'forwards'
+      }
+    );
+
+    // Ring 3: Main Solid Theme Reveal (delayed 180ms, smoothly expanding behind the ripples)
+    const animMain = mainLayer.animate(
+      [
+        { clipPath: `circle(0px at ${x}px ${y}px)` },
+        { clipPath: `circle(${endRadius}px at ${x}px ${y}px)` }
+      ],
+      {
+        duration: rippleDuration,
+        delay: 180,
+        easing: rippleEasing,
+        fill: 'forwards'
+      }
+    );
+
+    // Luminous leading wave crest
+    if (crest1) {
+      crest1.animate(
+        [
+          { width: '0px', height: '0px', opacity: 0.85 },
+          { width: `${endRadius * 1.6}px`, height: `${endRadius * 1.6}px`, opacity: 0 }
+        ],
+        {
+          duration: rippleDuration + 50,
+          easing: rippleEasing,
+          fill: 'forwards'
+        }
+      );
+    }
+
+    // Luminous trailing wave crest
+    if (crest2) {
+      crest2.animate(
+        [
+          { width: '0px', height: '0px', opacity: 0.7 },
+          { width: `${endRadius * 1.4}px`, height: `${endRadius * 1.4}px`, opacity: 0 }
+        ],
+        {
+          duration: rippleDuration,
+          delay: 100,
+          easing: rippleEasing,
+          fill: 'forwards'
+        }
+      );
+    }
+
+    // When the solid main layer finishes, page is 100% covered by new theme
+    animMain.onfinish = () => {
+      // 1. Fully swap theme state in-memory
+      applyTheme(nextTheme);
+
+      // 2. Cleanly hide overlay
+      overlay.classList.remove('active');
+      leadingLayer.style.clipPath = 'circle(0% at 0 0)';
+      trailingLayer.style.clipPath = 'circle(0% at 0 0)';
+      mainLayer.style.clipPath = 'circle(0% at 0 0)';
+
+      isThemeTransitioning = false;
+    };
+  };
+
+  const handleThemeToggle = (event) => {
     let x, y;
     if (event && (event.clientX !== undefined && event.clientY !== undefined) && (event.clientX !== 0 || event.clientY !== 0)) {
       x = event.clientX;
@@ -202,90 +355,16 @@ document.addEventListener('DOMContentLoaded', () => {
         y = 0;
       }
     }
-
-    // End radius to the farthest corner of the viewport
-    const endRadius = Math.hypot(
-      Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
-    );
-
-    // Check for native View Transitions API support
-    if (typeof document.startViewTransition === 'function') {
-      const transition = document.startViewTransition(() => {
-        applyTheme(nextTheme);
-      });
-
-      transition.ready.then(() => {
-        const anim = document.documentElement.animate(
-          {
-            clipPath: [
-              `circle(0px at ${x}px ${y}px)`,
-              `circle(${endRadius}px at ${x}px ${y}px)`
-            ]
-          },
-          {
-            duration: 500,
-            easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-            pseudoElement: '::view-transition-new(root)'
-          }
-        );
-
-        anim.onfinish = () => {
-          isThemeTransitioning = false;
-        };
-      }).catch(() => {
-        applyTheme(nextTheme);
-        isThemeTransitioning = false;
-      });
-    } else {
-      // Clean fallback for browsers without View Transitions API
-      runFallbackReveal(x, y, endRadius, nextTheme);
-    }
-  };
-
-  const runFallbackReveal = (x, y, endRadius, nextTheme) => {
-    let overlay = document.getElementById('themeRevealOverlay');
-    if (!overlay) {
-      overlay = document.createElement('div');
-      overlay.id = 'themeRevealOverlay';
-      overlay.className = 'theme-reveal-overlay';
-      document.body.appendChild(overlay);
-    }
-
-    const targetBg = nextTheme === 'dark' ? '#090d16' : '#ffffff';
-    overlay.style.backgroundColor = targetBg;
-    overlay.style.opacity = '1';
-
-    const expandAnim = overlay.animate(
-      [
-        { clipPath: `circle(0px at ${x}px ${y}px)` },
-        { clipPath: `circle(${endRadius}px at ${x}px ${y}px)` }
-      ],
-      {
-        duration: 480,
-        easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-        fill: 'forwards'
-      }
-    );
-
-    expandAnim.onfinish = () => {
-      applyTheme(nextTheme);
-
-      const fadeAnim = overlay.animate(
-        [{ opacity: 1 }, { opacity: 0 }],
-        { duration: 160, easing: 'ease-out' }
-      );
-
-      fadeAnim.onfinish = () => {
-        overlay.style.opacity = '0';
-        overlay.style.clipPath = 'circle(0% at 0 0)';
-        isThemeTransitioning = false;
-      };
-    };
+    runSlowRippleTransition(x, y);
   };
 
   const themeToggleBtns = document.querySelectorAll('.theme-toggle-btn');
   themeToggleBtns.forEach(btn => {
     btn.addEventListener('click', handleThemeToggle);
   });
+
+  // Expose test helper to trigger ripple animation from any screen coordinate
+  window.testRippleAt = (x, y) => {
+    runSlowRippleTransition(x, y);
+  };
 });
