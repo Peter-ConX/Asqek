@@ -8,105 +8,84 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/>
-  <!-- ✅ Lucide SVG icon library — replaces Material Symbols entirely -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#1652F0',
-            'primary-dark': '#1244C5',
-            accent: '#17B978',
-            'accent-dark': '#139D66',
-            'surface-white': '#FFFFFF',
-            'surface-light': '#F8FAFC',
-            'surface-muted': '#F1F5F9',
-            'surface-border': '#E2E8F0',
-            'surface-border-hover': '#CBD5E1',
-            'text-primary': '#0F172A',
-            'text-secondary': '#475569',
-            'text-muted': '#94A3B8',
-          },
-          fontFamily: {
-            heading: ['"Plus Jakarta Sans"', 'sans-serif'],
-            body: ['Inter', 'sans-serif'],
-          },
-        }
-      }
-    };
-  </script>
   <style>
+    /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; color: #0F172A; background: #FFFFFF; -webkit-font-smoothing: antialiased; }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #F8FAFC; }
-    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 999px; }
+    body { font-family: 'Inter', sans-serif; color: #f5f5f5; background: #0a0a0a; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #141416; }
+    ::-webkit-scrollbar-thumb { background: #2a2a2e; border-radius: 999px; }
 
-    /* ── Lucide icon baseline ── */
+    /* ── Lucide ── */
     [data-lucide] { display: inline-flex; flex-shrink: 0; vertical-align: middle; }
     [data-lucide] svg { display: block; }
 
-    /* ── Logo ── */
-    .asqek-logo-svg { height: 36px; width: auto; display: block; }
-
     /* ── Nav ── */
-    .nav-link { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; color: #475569; padding: 6px 10px; border-radius: 8px; transition: color 0.15s, background 0.15s; text-decoration: none; }
-    .nav-link:hover, .nav-link.active { color: #1652F0; background: #F1F5F9; }
+    .nav-link {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600;
+      color: rgba(245,245,245,0.55); padding: 6px 10px; border-radius: 8px;
+      transition: color 0.15s, background 0.15s; text-decoration: none;
+    }
+    .nav-link:hover, .nav-link.active { color: #f5f5f5; background: rgba(255,255,255,0.06); }
 
-    /* ── Pulse dot ── */
-    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.3)} }
-    .pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+    /* ── Pulse ── */
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+    .pulse-dot { animation: pulse-dot 2.2s ease-in-out infinite; }
 
     /* ── Buttons ── */
     .btn-primary {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      background: #1652F0; color: #FFFFFF;
+      background: #1652F0; color: #fff;
       font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 600;
       padding: 14px 28px; border-radius: 10px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 8px rgba(22,82,240,0.25);
-      transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 2px 12px rgba(22,82,240,0.35);
+      transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
       text-decoration: none; cursor: pointer; border: none;
     }
-    .btn-primary:hover { background: #1244C5; transform: translateY(-1px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 4px 16px rgba(22,82,240,0.35); }
+    .btn-primary:hover { background: #1244C5; transform: translateY(-1px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 6px 20px rgba(22,82,240,0.45); }
 
     .btn-ghost {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      background: #FFFFFF; color: #0F172A; border: 1px solid #E2E8F0;
+      background: transparent; color: #f5f5f5; border: 1px solid rgba(255,255,255,0.15);
       font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 600;
       padding: 14px 28px; border-radius: 10px;
       transition: background 0.15s, border-color 0.15s;
       text-decoration: none; cursor: pointer;
     }
-    .btn-ghost:hover { background: #F8FAFC; border-color: #CBD5E1; }
+    .btn-ghost:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.25); }
 
     .btn-accent {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      background: #17B978; color: #FFFFFF;
+      background: #17B978; color: #fff;
       font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600;
       padding: 12px 20px; border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(23,185,120,0.25);
-      transition: background 0.15s;
+      box-shadow: 0 2px 12px rgba(23,185,120,0.3);
+      transition: background 0.15s, transform 0.12s;
       text-decoration: none; cursor: pointer; border: none;
     }
-    .btn-accent:hover { background: #139D66; }
+    .btn-accent:hover { background: #139D66; transform: translateY(-1px); }
 
     /* ── Cards ── */
-    .card-1 { background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 16px; box-shadow: 0 1px 3px 0 rgba(15,23,42,0.03), 0 4px 12px 0 rgba(15,23,42,0.04); transition: box-shadow 0.2s, transform 0.2s; }
-    .card-1:hover { box-shadow: 0 4px 6px -1px rgba(15,23,42,0.04), 0 12px 24px -4px rgba(15,23,42,0.07); transform: translateY(-2px); }
-    .card-2 { background: #FFFFFF; border: 1px solid #CBD5E1; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(15,23,42,0.04), 0 12px 24px -4px rgba(15,23,42,0.07); }
+    .card-dk {
+      background: #141416; border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset, 0 4px 24px rgba(0,0,0,0.4);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .card-dk:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.12); box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
 
     /* ── Form ── */
     .form-input {
       width: 100%; padding: 12px 16px; border-radius: 8px;
-      border: 1px solid #E2E8F0; background: #FFFFFF; color: #0F172A;
-      font-family: 'Inter', sans-serif; font-size: 16px; outline: none;
+      border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04);
+      color: #f5f5f5; font-family: 'Inter', sans-serif; font-size: 16px; outline: none;
       transition: border-color 0.15s, box-shadow 0.15s;
     }
-    .form-input::placeholder { color: #94A3B8; }
-    .form-input:focus { border-color: #1652F0; box-shadow: 0 0 0 3px rgba(22,82,240,0.1); }
+    .form-input::placeholder { color: rgba(245,245,245,0.3); }
+    .form-input:focus { border-color: #1652F0; box-shadow: 0 0 0 3px rgba(22,82,240,0.15); }
 
     /* ── Section rhythm ── */
     .section-pad { padding: 96px 0; }
@@ -116,21 +95,26 @@
     .check-item { display: flex; align-items: flex-start; gap: 10px; }
     .check-dot {
       width: 20px; height: 20px; border-radius: 999px;
-      background: rgba(23,185,120,0.12);
+      background: rgba(23,185,120,0.15); border: 1px solid rgba(23,185,120,0.25);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; margin-top: 2px;
     }
 
     /* ── Pricing card ── */
-    .pricing-card { border: 2px solid #1652F0; border-radius: 24px; background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%); box-shadow: 0 20px 25px -5px rgba(22,82,240,0.08), 0 8px 10px -6px rgba(22,82,240,0.04); }
+    .pricing-card {
+      border: 1px solid rgba(22,82,240,0.4); border-radius: 24px;
+      background: linear-gradient(160deg, #141416 0%, #0f0f12 100%);
+      box-shadow: 0 0 0 1px rgba(22,82,240,0.1) inset, 0 20px 40px rgba(0,0,0,0.5);
+    }
 
-    /* ── Responsive helpers ── */
+    /* ── Mobile ── */
     @media(max-width:768px){
       .hidden-mobile { display: none !important; }
       .show-mobile   { display: flex !important; }
       .contact-grid  { grid-template-columns: 1fr !important; }
       .footer-grid   { grid-template-columns: 1fr !important; }
-      .mockup-hero   { grid-template-columns: 1fr !important; }
+      .mockup-row    { grid-template-columns: 1fr !important; }
+      .stats-row     { grid-template-columns: 1fr !important; }
     }
     @media(min-width:769px){
       .show-mobile   { display: none !important; }
@@ -138,199 +122,338 @@
     }
     #mobile-menu { display: none; }
     #mobile-menu.open { display: flex; }
+
+    /* ── Noise grain overlay on hero ── */
+    .grain::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 200px 200px; opacity: 0.35; z-index: 0;
+    }
+
+    /* ── Glow blobs ── */
+    .glow-blue  { position:absolute; border-radius:999px; background:rgba(22,82,240,0.12); filter:blur(80px); pointer-events:none; }
+    .glow-green { position:absolute; border-radius:999px; background:rgba(23,185,120,0.08); filter:blur(80px); pointer-events:none; }
+
+    /* ── Section label ── */
+    .section-label {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em; color: rgba(245,245,245,0.35);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-label::before, .section-label::after {
+      content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.07);
+    }
+
+    /* ── Browser mockup custom elements ── */
+    .browser-frame {
+      background: #1a1a1f; border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 32px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04) inset;
+    }
+    .browser-chrome {
+      background: #222228; border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+    }
+    .browser-dot { width: 11px; height: 11px; border-radius: 999px; }
+
+    /* ── Floating badge ── */
+    .float-badge {
+      background: #141416; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; padding: 7px 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      display: flex; align-items: center; gap: 7px;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; font-weight: 700; color: #f5f5f5;
+    }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════
-     STICKY GLASS NAVIGATION
-═══════════════════════════════════════════════ -->
-<header id="navbar" style="position:fixed;top:0;left:0;width:100%;z-index:50;background:rgba(255,255,255,0.80);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #E2E8F0;transition:box-shadow 0.2s;">
-  <div style="max-width:1280px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between;">
+<!-- ═══════════════════════════════════════════
+     STICKY GLASS NAV
+═══════════════════════════════════════════ -->
+<header id="navbar" style="position:fixed;top:0;left:0;width:100%;z-index:50;background:rgba(10,10,10,0.80);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);transition:box-shadow 0.2s;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;">
 
     <!-- Logo -->
     <a href="#hero" style="text-decoration:none;display:flex;align-items:center;">
-      <svg class="asqek-logo-svg" viewBox="0 0 340 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Asqek">
+      <svg style="height:34px;width:auto;" viewBox="0 0 340 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Asqek">
         <text x="0" y="78" style="font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:100px;">
-          <tspan style="fill:#17B978;">A</tspan><tspan style="fill:#1652F0;">sqek</tspan>
+          <tspan style="fill:#17B978;">A</tspan><tspan style="fill:#ffffff;">sqek</tspan>
         </text>
       </svg>
     </a>
 
-    <!-- Desktop Nav -->
-    <nav style="display:flex;align-items:center;gap:4px;" class="hidden-mobile">
+    <!-- Desktop nav — updated labels -->
+    <nav style="display:flex;align-items:center;gap:2px;" class="hidden-mobile">
       <a href="#hero"         class="nav-link active">Home</a>
-      <a href="#how-it-works" class="nav-link">How It Works</a>
+      <a href="#manifesto"    class="nav-link">Manifesto</a>
+      <a href="#how-it-works" class="nav-link">The Process</a>
       <a href="#why-us"       class="nav-link">Why Us</a>
       <a href="#pricing"      class="nav-link">Pricing</a>
       <a href="#contact"      class="nav-link">Contact</a>
     </nav>
 
-    <!-- Desktop CTA + Mobile hamburger -->
     <div style="display:flex;align-items:center;gap:12px;">
-      <a href="#contact" class="btn-primary hidden-mobile" style="padding:10px 20px;font-size:14px;border-radius:8px;">Get Started</a>
+      <a href="#contact" class="btn-accent hidden-mobile" style="padding:9px 18px;font-size:13px;border-radius:8px;">Get Started</a>
       <button id="nav-toggle" aria-label="Open menu" class="show-mobile" style="background:none;border:none;cursor:pointer;padding:6px;display:flex;align-items:center;">
-        <i data-lucide="menu" style="width:24px;height:24px;color:#0F172A;"></i>
+        <i data-lucide="menu" style="width:22px;height:22px;color:#f5f5f5;"></i>
       </button>
     </div>
   </div>
 
   <!-- Mobile dropdown -->
-  <div id="mobile-menu" style="flex-direction:column;background:rgba(255,255,255,0.97);border-top:1px solid #E2E8F0;padding:16px 24px 20px;">
+  <div id="mobile-menu" style="flex-direction:column;background:rgba(14,14,16,0.98);border-top:1px solid rgba(255,255,255,0.06);padding:16px 24px 20px;">
     <a href="#hero"         class="nav-link" style="display:block;padding:10px 0;">Home</a>
-    <a href="#how-it-works" class="nav-link" style="display:block;padding:10px 0;">How It Works</a>
+    <a href="#manifesto"    class="nav-link" style="display:block;padding:10px 0;">Manifesto</a>
+    <a href="#how-it-works" class="nav-link" style="display:block;padding:10px 0;">The Process</a>
     <a href="#why-us"       class="nav-link" style="display:block;padding:10px 0;">Why Us</a>
     <a href="#pricing"      class="nav-link" style="display:block;padding:10px 0;">Pricing</a>
     <a href="#contact"      class="nav-link" style="display:block;padding:10px 0;">Contact</a>
-    <a href="#contact" class="btn-primary" style="margin-top:12px;width:100%;border-radius:8px;padding:12px 20px;font-size:14px;">Get Started</a>
+    <a href="#contact" class="btn-accent" style="margin-top:12px;width:100%;border-radius:8px;padding:12px 20px;font-size:14px;">Get Started</a>
   </div>
 </header>
 
-<main style="padding-top:72px;">
+<main style="padding-top:68px;">
 
-<!-- ═══════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      1. HERO
-═══════════════════════════════════════════════ -->
-<section id="hero" style="position:relative;overflow:hidden;background:#FFFFFF;">
-  <!-- Ambient glow -->
-  <div style="position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(ellipse at center,rgba(22,82,240,0.08) 0%,rgba(23,185,120,0.05) 50%,transparent 70%);pointer-events:none;border-radius:999px;"></div>
+═══════════════════════════════════════════ -->
+<section id="hero" class="grain" style="position:relative;overflow:hidden;background:#0a0a0a;">
+  <!-- Glow blobs -->
+  <div class="glow-blue"  style="width:600px;height:400px;top:-100px;left:-100px;"></div>
+  <div class="glow-green" style="width:400px;height:300px;top:200px;right:-80px;"></div>
 
-  <div style="max-width:1280px;margin:0 auto;padding:80px 24px 60px;">
-    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;max-width:860px;margin:0 auto;">
+  <div style="position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:80px 24px 40px;">
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;max-width:880px;margin:0 auto;">
 
-      <!-- Scarcity pill -->
-      <div style="display:inline-flex;align-items:center;gap:8px;background:#F1F5F9;border:1px solid #E2E8F0;border-radius:999px;padding:6px 16px;margin-bottom:28px;">
-        <span class="pulse-dot" style="display:inline-block;width:8px;height:8px;border-radius:999px;background:#17B978;flex-shrink:0;"></span>
-        <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#17B978;">Limited Availability This Month</span>
+      <!-- Badge -->
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(23,185,120,0.08);border:1px solid rgba(23,185,120,0.2);border-radius:999px;padding:6px 16px;margin-bottom:28px;">
+        <span class="pulse-dot" style="display:inline-block;width:7px;height:7px;border-radius:999px;background:#17B978;flex-shrink:0;"></span>
+        <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#17B978;">Limited Availability This Month</span>
       </div>
 
       <!-- Headline -->
-      <h1 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(36px,6vw,64px);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:#0F172A;margin-bottom:24px;">
-        Get a Professional Website for Your Business,
-        <span style="color:#1652F0;"> Built Free First.</span>
+      <h1 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(36px,6vw,66px);font-weight:800;line-height:1.08;letter-spacing:-0.03em;color:#f5f5f5;margin-bottom:22px;">
+        Get a Professional Website<br>for Your Business,
+        <span style="background:linear-gradient(90deg,#1652F0,#17B978);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"> Built Free First.</span>
       </h1>
 
       <!-- Subheadline -->
-      <p style="font-family:'Inter',sans-serif;font-size:18px;line-height:1.7;color:#475569;max-width:640px;margin-bottom:40px;">
+      <p style="font-family:'Inter',sans-serif;font-size:18px;line-height:1.7;color:rgba(245,245,245,0.55);max-width:600px;margin-bottom:40px;">
         We build your website before you pay a single penny. Like it? Keep it live for a simple setup fee and low monthly hosting. Don't like it? No cost, zero risk.
       </p>
 
-      <!-- CTA Buttons -->
+      <!-- CTAs -->
       <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:52px;">
-        <a href="#contact" class="btn-primary" style="font-size:16px;padding:16px 32px;border-radius:12px;">
+        <a href="#contact" class="btn-primary" style="font-size:16px;padding:15px 32px;border-radius:12px;">
           Get Your Free Website Built
-          <i data-lucide="arrow-right" style="width:20px;height:20px;"></i>
+          <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
         </a>
-        <a href="#how-it-works" class="btn-ghost" style="font-size:16px;padding:16px 32px;border-radius:12px;">
+        <a href="#how-it-works" class="btn-ghost" style="font-size:16px;padding:15px 32px;border-radius:12px;">
           See How It Works
         </a>
       </div>
 
-      <!-- Trust row -->
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:100%;max-width:540px;padding-top:28px;border-top:1px solid #E2E8F0;">
+      <!-- Trust metrics -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:100%;max-width:500px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.07);">
         <div style="text-align:center;">
-          <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;color:#0F172A;letter-spacing:-0.02em;">₦0 Down</p>
-          <p style="font-family:'Inter',sans-serif;font-size:13px;color:#94A3B8;margin-top:3px;">Zero upfront cost</p>
+          <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;color:#f5f5f5;letter-spacing:-0.02em;">₦0 Down</p>
+          <p style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(245,245,245,0.35);margin-top:3px;">Zero upfront cost</p>
         </div>
         <div style="text-align:center;">
           <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;color:#17B978;letter-spacing:-0.02em;">48-72h</p>
-          <p style="font-family:'Inter',sans-serif;font-size:13px;color:#94A3B8;margin-top:3px;">Rapid initial draft</p>
+          <p style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(245,245,245,0.35);margin-top:3px;">Rapid initial draft</p>
         </div>
         <div style="text-align:center;">
           <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;color:#1652F0;letter-spacing:-0.02em;">100%</p>
-          <p style="font-family:'Inter',sans-serif;font-size:13px;color:#94A3B8;margin-top:3px;">Risk-free preview</p>
+          <p style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(245,245,245,0.35);margin-top:3px;">Risk-free preview</p>
         </div>
       </div>
     </div>
 
-    <!-- Browser Mockup -->
-    <div style="margin-top:64px;max-width:960px;margin-left:auto;margin-right:auto;position:relative;">
+    <!-- ════════════════════════════════
+         BROWSER DEMO MOCKUP
+    ════════════════════════════════ -->
+    <div style="margin-top:72px;max-width:980px;margin-left:auto;margin-right:auto;position:relative;">
       <!-- Floating badges -->
-      <div style="position:absolute;top:-16px;left:-8px;z-index:10;display:flex;align-items:center;gap:8px;background:#FFFFFF;border:1px solid #E2E8F0;padding:8px 16px;border-radius:12px;box-shadow:0 4px 16px rgba(15,23,42,0.08);">
-        <span style="font-size:16px;">✨</span>
-        <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:#0F172A;">100% Custom Design</span>
+      <div class="float-badge" style="position:absolute;top:-14px;left:0;z-index:10;">
+        <span style="font-size:14px;">✨</span>
+        100% Custom Design
       </div>
-      <div style="position:absolute;bottom:-16px;right:-8px;z-index:10;display:flex;align-items:center;gap:8px;background:#FFFFFF;border:1px solid #E2E8F0;padding:8px 16px;border-radius:12px;box-shadow:0 4px 16px rgba(15,23,42,0.08);">
-        <i data-lucide="zap" style="width:18px;height:18px;color:#17B978;fill:#17B978;stroke:#17B978;"></i>
-        <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:#0F172A;">Fast 48-72h Delivery</span>
+      <div class="float-badge" style="position:absolute;bottom:-14px;right:0;z-index:10;">
+        <i data-lucide="zap" style="width:14px;height:14px;color:#17B978;fill:#17B978;stroke:none;"></i>
+        Fast 48-72h Delivery
       </div>
 
       <!-- Browser frame -->
-      <div class="card-2" style="overflow:hidden;border-radius:20px;box-shadow:0 20px 40px -8px rgba(15,23,42,0.12);">
-        <!-- Window chrome -->
-        <div style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;padding:12px 16px;display:flex;align-items:center;gap:12px;">
-          <div style="display:flex;gap:6px;">
-            <div style="width:12px;height:12px;border-radius:999px;background:#FF5F56;"></div>
-            <div style="width:12px;height:12px;border-radius:999px;background:#FFBD2E;"></div>
-            <div style="width:12px;height:12px;border-radius:999px;background:#27C93F;"></div>
+      <div class="browser-frame">
+        <!-- Chrome bar -->
+        <div class="browser-chrome">
+          <div style="display:flex;gap:5px;align-items:center;">
+            <div class="browser-dot" style="background:#FF5F56;"></div>
+            <div class="browser-dot" style="background:#FFBD2E;"></div>
+            <div class="browser-dot" style="background:#27C93F;"></div>
           </div>
-          <div style="flex:1;max-width:400px;margin:0 auto;background:#FFFFFF;border:1px solid #E2E8F0;border-radius:8px;padding:6px 12px;display:flex;align-items:center;gap:6px;">
-            <i data-lucide="lock" style="width:13px;height:13px;color:#17B978;fill:#17B978;stroke:none;"></i>
-            <span style="font-family:'Inter',sans-serif;font-size:13px;color:#94A3B8;">https://yourbusiness.com</span>
+          <!-- URL bar -->
+          <div style="flex:1;max-width:340px;margin:0 auto;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:5px 12px;display:flex;align-items:center;gap:6px;">
+            <i data-lucide="lock" style="width:11px;height:11px;color:#17B978;fill:#17B978;stroke:none;"></i>
+            <span style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(245,245,245,0.4);">brightlinestudios.com</span>
+          </div>
+          <!-- Live preview badge -->
+          <div style="margin-left:auto;background:rgba(23,185,120,0.12);border:1px solid rgba(23,185,120,0.25);border-radius:999px;padding:3px 10px;display:flex;align-items:center;gap:5px;">
+            <span style="width:6px;height:6px;border-radius:999px;background:#17B978;display:inline-block;"></span>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;font-weight:700;color:#17B978;text-transform:uppercase;letter-spacing:0.04em;">Live Preview</span>
           </div>
         </div>
 
-        <!-- Simulated website content -->
-        <div style="background:#FFFFFF;padding:32px 36px;">
+        <!-- ── Simulated Brightline Studios website ── -->
+        <div style="background:#0e0e12;padding:24px 28px 20px;">
+
           <!-- Sim nav -->
-          <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid #F1F5F9;margin-bottom:28px;">
-            <div style="display:flex;align-items:center;gap:10px;">
-              <div style="width:32px;height:32px;border-radius:8px;background:#1652F0;display:flex;align-items:center;justify-content:center;color:#FFFFFF;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;">B</div>
-              <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:700;color:#0F172A;">Brightline Studios</span>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:22px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#1652F0,#17B978);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:12px;">B</div>
+                <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;color:#f5f5f5;">Brightline Studios</span>
+              </div>
+              <p style="font-family:'Inter',sans-serif;font-size:10px;color:rgba(245,245,245,0.35);margin-top:2px;margin-left:36px;">Lagos · Abuja · Global</p>
             </div>
-            <div style="display:flex;gap:20px;align-items:center;">
-              <span style="font-family:'Inter',sans-serif;font-size:13px;color:#94A3B8;">Services</span>
-              <span style="font-family:'Inter',sans-serif;font-size:13px;color:#94A3B8;">Work</span>
-              <span style="font-family:'Inter',sans-serif;font-size:13px;color:#94A3B8;">Contact</span>
-              <span style="background:#1652F0;color:#FFFFFF;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;padding:7px 14px;border-radius:6px;">Book Now</span>
+            <div style="display:flex;gap:16px;align-items:center;" class="hidden-mobile">
+              <span style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(245,245,245,0.4);">Services</span>
+              <span style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(245,245,245,0.4);">Projects</span>
+              <span style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(245,245,245,0.4);">Contact</span>
+              <span style="background:#1652F0;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;padding:6px 13px;border-radius:6px;white-space:nowrap;">Book Consultation</span>
             </div>
           </div>
 
-          <!-- Sim hero row -->
-          <div class="mockup-hero" style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;">
+          <!-- Sim hero content -->
+          <div class="mockup-row" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;">
+            <!-- Left: text -->
             <div>
-              <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#17B978;">Lagos · Abuja · Global</span>
-              <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:800;color:#0F172A;margin:10px 0;line-height:1.25;letter-spacing:-0.02em;">High-converting architecture &amp; brand spaces designed for scale.</h2>
-              <p style="font-family:'Inter',sans-serif;font-size:14px;color:#475569;line-height:1.6;margin-bottom:16px;">We turn local foot traffic and digital visitors into confirmed client retainers.</p>
-              <div style="display:flex;gap:12px;align-items:center;">
-                <span style="display:inline-flex;align-items:center;gap:6px;background:#17B978;color:#FFFFFF;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;padding:8px 14px;border-radius:8px;">
-                  <i data-lucide="message-circle" style="width:15px;height:15px;color:#FFFFFF;"></i>
+              <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(16px,2.2vw,22px);font-weight:800;color:#f5f5f5;line-height:1.25;letter-spacing:-0.02em;margin-bottom:10px;">
+                High-converting architecture &amp; brand spaces designed to scale.
+              </h2>
+              <p style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(245,245,245,0.45);line-height:1.65;margin-bottom:16px;">
+                We turn local foot traffic and digital visitors into confirmed client retainers with premium spatial curation.
+              </p>
+              <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                <span style="display:inline-flex;align-items:center;gap:5px;background:#17B978;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;padding:7px 12px;border-radius:7px;white-space:nowrap;">
+                  <i data-lucide="message-circle" style="width:13px;height:13px;color:#fff;"></i>
                   Chat on WhatsApp
                 </span>
-                <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;color:#1652F0;display:flex;align-items:center;gap:4px;">
+                <span style="display:inline-flex;align-items:center;gap:5px;background:transparent;border:1px solid rgba(255,255,255,0.15);color:#f5f5f5;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;padding:7px 12px;border-radius:7px;white-space:nowrap;">
                   View Projects
-                  <i data-lucide="arrow-right" style="width:13px;height:13px;color:#1652F0;"></i>
+                  <i data-lucide="arrow-right" style="width:11px;height:11px;color:#f5f5f5;"></i>
                 </span>
               </div>
             </div>
-            <div style="position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,#E2E8F0 0%,#F1F5F9 100%);display:flex;align-items:center;justify-content:center;">
-              <div style="text-align:center;">
-                <i data-lucide="image" style="width:48px;height:48px;color:#CBD5E1;"></i>
-                <p style="font-family:'Inter',sans-serif;font-size:12px;color:#94A3B8;margin-top:6px;">Business hero image</p>
-              </div>
-              <div style="position:absolute;bottom:10px;left:10px;background:rgba(255,255,255,0.92);backdrop-filter:blur(8px);padding:6px 10px;border-radius:8px;box-shadow:0 2px 8px rgba(15,23,42,0.1);">
-                <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;color:#0F172A;">+184% Monthly Growth</p>
+            <!-- Right: hero image placeholder -->
+            <div style="position:relative;border-radius:12px;overflow:hidden;aspect-ratio:16/10;background:linear-gradient(135deg,#1a1a24 0%,#222230 100%);display:flex;align-items:center;justify-content:center;">
+              <!-- Architectural interior illustration -->
+              <svg width="100%" height="100%" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2a2a38"/><stop offset="100%" stop-color="#1a1a24"/></linearGradient>
+                  <linearGradient id="wall" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#22222e"/><stop offset="100%" stop-color="#2e2e40"/></linearGradient>
+                  <linearGradient id="win" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1652F0" stop-opacity="0.3"/><stop offset="100%" stop-color="#17B978" stop-opacity="0.1"/></linearGradient>
+                </defs>
+                <!-- room -->
+                <rect width="400" height="250" fill="url(#floor)"/>
+                <!-- back wall -->
+                <rect x="60" y="30" width="280" height="170" rx="4" fill="url(#wall)"/>
+                <!-- window panels -->
+                <rect x="80" y="50" width="60" height="130" rx="3" fill="url(#win)" opacity="0.8"/>
+                <rect x="155" y="50" width="60" height="130" rx="3" fill="url(#win)" opacity="0.6"/>
+                <rect x="230" y="50" width="60" height="130" rx="3" fill="url(#win)" opacity="0.4"/>
+                <!-- desk -->
+                <rect x="120" y="185" width="160" height="10" rx="2" fill="#3a3a50"/>
+                <rect x="150" y="195" width="8" height="20" rx="2" fill="#2e2e40"/>
+                <rect x="240" y="195" width="8" height="20" rx="2" fill="#2e2e40"/>
+                <!-- light glow -->
+                <ellipse cx="200" cy="80" rx="80" ry="40" fill="#1652F0" opacity="0.06"/>
+                <!-- floor reflection -->
+                <rect x="0" y="215" width="400" height="35" fill="#0e0e18" opacity="0.6"/>
+                <text x="200" y="238" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="rgba(245,245,245,0.2)">Interior Architecture · Premium Spatial Design</text>
+              </svg>
+              <!-- Floating metric chip -->
+              <div style="position:absolute;bottom:10px;left:10px;background:rgba(14,14,18,0.9);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:7px;">
+                <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;font-weight:700;color:#17B978;">+184% Monthly Growth</p>
               </div>
             </div>
           </div>
 
-          <!-- Sim feature pills -->
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px;">
-            <div style="background:#F8FAFC;border-radius:10px;padding:14px;">
-              <i data-lucide="monitor" style="width:20px;height:20px;color:#1652F0;"></i>
-              <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:#0F172A;margin-top:6px;">Seamless Mobile</p>
-              <p style="font-family:'Inter',sans-serif;font-size:11px;color:#94A3B8;margin-top:2px;">Engineered for all screens.</p>
+          <!-- Sim 3-col stats row -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px;">
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px;">
+              <i data-lucide="monitor" style="width:16px;height:16px;color:#1652F0;margin-bottom:6px;"></i>
+              <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;color:#f5f5f5;">Seamless Mobile</p>
+              <p style="font-family:'Inter',sans-serif;font-size:10px;color:rgba(245,245,245,0.35);margin-top:2px;line-height:1.5;">Engineered for iPhones and Android screens.</p>
             </div>
-            <div style="background:#F8FAFC;border-radius:10px;padding:14px;">
-              <i data-lucide="gauge" style="width:20px;height:20px;color:#17B978;"></i>
-              <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:#0F172A;margin-top:6px;">Instant Load Time</p>
-              <p style="font-family:'Inter',sans-serif;font-size:11px;color:#94A3B8;margin-top:2px;">Under 1.2s load speeds.</p>
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px;">
+              <i data-lucide="gauge" style="width:16px;height:16px;color:#17B978;margin-bottom:6px;"></i>
+              <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;color:#f5f5f5;">Instant Load Time</p>
+              <p style="font-family:'Inter',sans-serif;font-size:10px;color:rgba(245,245,245,0.35);margin-top:2px;line-height:1.5;">Optimized under 1.2s core web vitals.</p>
             </div>
-            <div style="background:#F8FAFC;border-radius:10px;padding:14px;">
-              <i data-lucide="mail" style="width:20px;height:20px;color:#1652F0;"></i>
-              <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:#0F172A;margin-top:6px;">Direct Leads</p>
-              <p style="font-family:'Inter',sans-serif;font-size:11px;color:#94A3B8;margin-top:2px;">WhatsApp + email alerts.</p>
+            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px;">
+              <i data-lucide="mail" style="width:16px;height:16px;color:#1652F0;margin-bottom:6px;"></i>
+              <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;color:#f5f5f5;">Direct Leads</p>
+              <p style="font-family:'Inter',sans-serif;font-size:10px;color:rgba(245,245,245,0.35);margin-top:2px;line-height:1.5;">Instant WhatsApp and email alerts.</p>
             </div>
+          </div>
+        </div>
+        <!-- End simulated site -->
+      </div>
+    </div>
+    <!-- End browser mockup -->
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     2. MANIFESTO (replaces About/Why original)
+═══════════════════════════════════════════ -->
+<section id="manifesto" style="background:#0d0d0f;" class="section-pad">
+  <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+    <div class="section-label" style="margin-bottom:48px;">New Technical Direction</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;" class="mockup-row">
+      <div>
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:800;letter-spacing:-0.025em;color:#f5f5f5;line-height:1.15;margin-bottom:20px;">
+          We build the site first.<br>You decide if you pay.
+        </h2>
+        <p style="font-family:'Inter',sans-serif;font-size:17px;line-height:1.75;color:rgba(245,245,245,0.5);margin-bottom:20px;">
+          Every agency on the market asks you to pay a retainer before a single pixel exists. We think that's backwards. So we inverted the model entirely.
+        </p>
+        <p style="font-family:'Inter',sans-serif;font-size:17px;line-height:1.75;color:rgba(245,245,245,0.5);">
+          We carry all the risk. We invest the time, the engineering, and the creative effort upfront. You only pay if the final result genuinely exceeds your expectations.
+        </p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="card-dk" style="padding:24px 28px;display:flex;gap:16px;align-items:flex-start;">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(22,82,240,0.1);border:1px solid rgba(22,82,240,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i data-lucide="shield-check" style="width:20px;height:20px;color:#1652F0;"></i>
+          </div>
+          <div>
+            <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:#f5f5f5;margin-bottom:4px;">Risk-Inverted Model</p>
+            <p style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.4);line-height:1.6;">We absorb the build cost entirely. You only pay if you approve the final result.</p>
+          </div>
+        </div>
+        <div class="card-dk" style="padding:24px 28px;display:flex;gap:16px;align-items:flex-start;">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(23,185,120,0.1);border:1px solid rgba(23,185,120,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i data-lucide="zap" style="width:20px;height:20px;color:#17B978;fill:#17B978;stroke:none;"></i>
+          </div>
+          <div>
+            <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:#f5f5f5;margin-bottom:4px;">48–72h Engineering Sprint</p>
+            <p style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.4);line-height:1.6;">Not a mockup. A fully interactive, live-hosted preview ready in days — not weeks.</p>
+          </div>
+        </div>
+        <div class="card-dk" style="padding:24px 28px;display:flex;gap:16px;align-items:flex-start;">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <i data-lucide="trending-up" style="width:20px;height:20px;color:#f5f5f5;"></i>
+          </div>
+          <div>
+            <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:#f5f5f5;margin-bottom:4px;">Conversion-First Architecture</p>
+            <p style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.4);line-height:1.6;">Every element engineered to generate leads, WhatsApp inquiries, and indexed visibility.</p>
           </div>
         </div>
       </div>
@@ -339,79 +462,79 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════════════
-     2. HOW IT WORKS
-═══════════════════════════════════════════════ -->
-<section id="how-it-works" style="background:#F8FAFC;" class="section-pad">
+<!-- ═══════════════════════════════════════════
+     3. THE PROCESS (How It Works)
+═══════════════════════════════════════════ -->
+<section id="how-it-works" style="background:#0a0a0a;" class="section-pad">
   <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
 
+    <div class="section-label" style="margin-bottom:48px;">Simple &amp; Frictionless</div>
     <div style="text-align:center;max-width:640px;margin:0 auto 64px;">
-      <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#1652F0;">Simple &amp; Frictionless</span>
-      <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-0.025em;color:#0F172A;margin:12px 0;">How It Works</h2>
-      <p style="font-family:'Inter',sans-serif;font-size:18px;line-height:1.7;color:#475569;">
+      <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-0.025em;color:#f5f5f5;margin-bottom:16px;">How It Works</h2>
+      <p style="font-family:'Inter',sans-serif;font-size:17px;line-height:1.7;color:rgba(245,245,245,0.45);">
         Experience our transparent, zero-risk process. You don't commit a dime until you see and love your completed site.
       </p>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
 
       <!-- Step 1 -->
-      <div class="card-1" style="padding:36px;display:flex;flex-direction:column;justify-content:space-between;">
+      <div class="card-dk" style="padding:36px;display:flex;flex-direction:column;justify-content:space-between;">
         <div>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
-            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:32px;font-weight:800;color:#DBEAFE;letter-spacing:-0.02em;">01</span>
-            <div style="width:48px;height:48px;border-radius:12px;background:#EFF6FF;display:flex;align-items:center;justify-content:center;">
-              <i data-lucide="file-edit" style="width:24px;height:24px;color:#1652F0;"></i>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:36px;font-weight:800;color:rgba(22,82,240,0.2);letter-spacing:-0.02em;">01</span>
+            <div style="width:44px;height:44px;border-radius:11px;background:rgba(22,82,240,0.1);border:1px solid rgba(22,82,240,0.2);display:flex;align-items:center;justify-content:center;">
+              <i data-lucide="file-edit" style="width:22px;height:22px;color:#1652F0;"></i>
             </div>
           </div>
-          <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:12px;">Send Your Details</h3>
-          <p style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;color:#475569;">
+          <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;font-weight:700;color:#f5f5f5;margin-bottom:10px;">Send Your Details</h3>
+          <p style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;color:rgba(245,245,245,0.45);">
             Reach out with basic info about your business, the services you provide, and your preferred brand style. No lengthy brief needed.
           </p>
         </div>
-        <div style="margin-top:28px;padding-top:20px;border-top:1px solid #F1F5F9;display:flex;align-items:center;gap:8px;">
-          <i data-lucide="timer" style="width:16px;height:16px;color:#1652F0;"></i>
-          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:#1652F0;">Takes under 5 minutes</span>
+        <div style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:8px;">
+          <i data-lucide="timer" style="width:14px;height:14px;color:#1652F0;"></i>
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;color:#1652F0;">Takes under 5 minutes</span>
         </div>
       </div>
 
       <!-- Step 2 -->
-      <div class="card-1" style="padding:36px;display:flex;flex-direction:column;justify-content:space-between;">
+      <div class="card-dk" style="padding:36px;display:flex;flex-direction:column;justify-content:space-between;">
         <div>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
-            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:32px;font-weight:800;color:#D1FAE5;letter-spacing:-0.02em;">02</span>
-            <div style="width:48px;height:48px;border-radius:12px;background:#ECFDF5;display:flex;align-items:center;justify-content:center;">
-              <i data-lucide="globe" style="width:24px;height:24px;color:#17B978;"></i>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:36px;font-weight:800;color:rgba(23,185,120,0.2);letter-spacing:-0.02em;">02</span>
+            <div style="width:44px;height:44px;border-radius:11px;background:rgba(23,185,120,0.1);border:1px solid rgba(23,185,120,0.2);display:flex;align-items:center;justify-content:center;">
+              <i data-lucide="globe" style="width:22px;height:22px;color:#17B978;"></i>
             </div>
           </div>
-          <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:12px;">We Build It Free</h3>
-          <p style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;color:#475569;">
+          <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;font-weight:700;color:#f5f5f5;margin-bottom:10px;">We Build It Free</h3>
+          <p style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;color:rgba(245,245,245,0.45);">
             Our engineering team crafts a fully interactive, working website preview tailored to your brand at zero cost and zero obligation.
           </p>
         </div>
-        <div style="margin-top:28px;padding-top:20px;border-top:1px solid #F1F5F9;display:flex;align-items:center;gap:8px;">
-          <i data-lucide="badge-check" style="width:16px;height:16px;color:#17B978;"></i>
-          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:#17B978;">Live preview in 48-72h</span>
+        <div style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:8px;">
+          <i data-lucide="badge-check" style="width:14px;height:14px;color:#17B978;"></i>
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;color:#17B978;">Live preview in 48-72h</span>
         </div>
       </div>
 
       <!-- Step 3 -->
-      <div class="card-1" style="padding:36px;display:flex;flex-direction:column;justify-content:space-between;">
+      <div class="card-dk" style="padding:36px;display:flex;flex-direction:column;justify-content:space-between;">
         <div>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
-            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:32px;font-weight:800;color:#DBEAFE;letter-spacing:-0.02em;">03</span>
-            <div style="width:48px;height:48px;border-radius:12px;background:#EFF6FF;display:flex;align-items:center;justify-content:center;">
-              <i data-lucide="rocket" style="width:24px;height:24px;color:#1652F0;"></i>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:36px;font-weight:800;color:rgba(22,82,240,0.2);letter-spacing:-0.02em;">03</span>
+            <div style="width:44px;height:44px;border-radius:11px;background:rgba(22,82,240,0.1);border:1px solid rgba(22,82,240,0.2);display:flex;align-items:center;justify-content:center;">
+              <i data-lucide="rocket" style="width:22px;height:22px;color:#1652F0;"></i>
             </div>
           </div>
-          <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:12px;">Go Live If You Love It</h3>
-          <p style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;color:#475569;">
+          <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;font-weight:700;color:#f5f5f5;margin-bottom:10px;">Go Live If You Love It</h3>
+          <p style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;color:rgba(245,245,245,0.45);">
             Like what you see? Pay a one-time setup fee, then a modest monthly fee to keep it hosted, connected, secured, and updated.
           </p>
         </div>
-        <div style="margin-top:28px;padding-top:20px;border-top:1px solid #F1F5F9;display:flex;align-items:center;gap:8px;">
-          <i data-lucide="circle-x" style="width:16px;height:16px;color:#0F172A;"></i>
-          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:#0F172A;">Don't like it? Pay ₦0</span>
+        <div style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:8px;">
+          <i data-lucide="circle-x" style="width:14px;height:14px;color:rgba(245,245,245,0.5);"></i>
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;color:rgba(245,245,245,0.5);">Don't like it? Pay ₦0</span>
         </div>
       </div>
 
@@ -420,81 +543,81 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════════════
-     3. WHY THIS OFFER WORKS
-═══════════════════════════════════════════════ -->
-<section id="why-us" style="background:#FFFFFF;" class="section-pad">
+<!-- ═══════════════════════════════════════════
+     4. WHY US
+═══════════════════════════════════════════ -->
+<section id="why-us" style="background:#0d0d0f;" class="section-pad">
   <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
 
+    <div class="section-label" style="margin-bottom:48px;">High Conviction Guarantee</div>
     <div style="text-align:center;max-width:640px;margin:0 auto 64px;">
-      <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#17B978;">High Conviction Guarantee</span>
-      <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-0.025em;color:#0F172A;margin:12px 0;">Why This Offer Works For You</h2>
-      <p style="font-family:'Inter',sans-serif;font-size:18px;line-height:1.7;color:#475569;">
+      <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-0.025em;color:#f5f5f5;margin-bottom:16px;">Why This Offer Works For You</h2>
+      <p style="font-family:'Inter',sans-serif;font-size:17px;line-height:1.7;color:rgba(245,245,245,0.45);">
         Traditional web agencies demand huge upfront retainers before you ever see a page. We flipped this risk entirely onto ourselves.
       </p>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
 
       <!-- Zero Risk -->
-      <div class="card-1" style="padding:36px;display:flex;flex-direction:column;">
-        <div style="width:56px;height:56px;border-radius:14px;background:rgba(23,185,120,0.10);display:flex;align-items:center;justify-content:center;margin-bottom:24px;">
-          <i data-lucide="shield-check" style="width:28px;height:28px;color:#17B978;"></i>
+      <div class="card-dk" style="padding:36px;display:flex;flex-direction:column;">
+        <div style="width:52px;height:52px;border-radius:13px;background:rgba(23,185,120,0.08);border:1px solid rgba(23,185,120,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:22px;">
+          <i data-lucide="shield-check" style="width:26px;height:26px;color:#17B978;"></i>
         </div>
-        <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:12px;">Zero Risk</h3>
-        <p style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;color:#475569;margin-bottom:20px;">
-          See your actual, fully working finished website before paying a single kobo. It doesn't commit you to anything — walk away with no hard feelings.
+        <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;font-weight:700;color:#f5f5f5;margin-bottom:10px;">Zero Risk</h3>
+        <p style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;color:rgba(245,245,245,0.45);margin-bottom:20px;">
+          See your actual, fully working finished website before paying a single kobo. Walk away with no hard feelings if it doesn't exceed your expectations.
         </p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:auto;">
           <li class="check-item">
-            <span class="check-dot"><i data-lucide="check" style="width:12px;height:12px;color:#17B978;stroke-width:3;"></i></span>
-            <span style="font-family:'Inter',sans-serif;font-size:14px;color:#0F172A;">No credit card required upfront</span>
+            <span class="check-dot"><i data-lucide="check" style="width:11px;height:11px;color:#17B978;stroke-width:3;"></i></span>
+            <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.6);">No credit card required upfront</span>
           </li>
           <li class="check-item">
-            <span class="check-dot"><i data-lucide="check" style="width:12px;height:12px;color:#17B978;stroke-width:3;"></i></span>
-            <span style="font-family:'Inter',sans-serif;font-size:14px;color:#0F172A;">No binding contract or hidden clauses</span>
+            <span class="check-dot"><i data-lucide="check" style="width:11px;height:11px;color:#17B978;stroke-width:3;"></i></span>
+            <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.6);">No binding contract or hidden clauses</span>
           </li>
         </ul>
       </div>
 
       <!-- Fast Turnaround -->
-      <div class="card-1" style="padding:36px;display:flex;flex-direction:column;">
-        <div style="width:56px;height:56px;border-radius:14px;background:rgba(22,82,240,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:24px;">
-          <i data-lucide="zap" style="width:28px;height:28px;color:#1652F0;fill:#1652F0;stroke:none;"></i>
+      <div class="card-dk" style="padding:36px;display:flex;flex-direction:column;">
+        <div style="width:52px;height:52px;border-radius:13px;background:rgba(22,82,240,0.08);border:1px solid rgba(22,82,240,0.15);display:flex;align-items:center;justify-content:center;margin-bottom:22px;">
+          <i data-lucide="zap" style="width:26px;height:26px;color:#1652F0;fill:#1652F0;stroke:none;"></i>
         </div>
-        <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:12px;">Fast Turnaround</h3>
-        <p style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;color:#475569;margin-bottom:20px;">
+        <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;font-weight:700;color:#f5f5f5;margin-bottom:10px;">Fast Turnaround</h3>
+        <p style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;color:rgba(245,245,245,0.45);margin-bottom:20px;">
           No dragging on for months. We build and deliver your preview in just 48 to 72 hours so your business can start capitalizing on leads right away.
         </p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:auto;">
           <li class="check-item">
-            <span class="check-dot"><i data-lucide="check" style="width:12px;height:12px;color:#17B978;stroke-width:3;"></i></span>
-            <span style="font-family:'Inter',sans-serif;font-size:14px;color:#0F172A;">Preview ready within days</span>
+            <span class="check-dot"><i data-lucide="check" style="width:11px;height:11px;color:#17B978;stroke-width:3;"></i></span>
+            <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.6);">Preview ready within days</span>
           </li>
           <li class="check-item">
-            <span class="check-dot"><i data-lucide="check" style="width:12px;height:12px;color:#17B978;stroke-width:3;"></i></span>
-            <span style="font-family:'Inter',sans-serif;font-size:14px;color:#0F172A;">Quick revision cycles</span>
+            <span class="check-dot"><i data-lucide="check" style="width:11px;height:11px;color:#17B978;stroke-width:3;"></i></span>
+            <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.6);">Quick revision cycles</span>
           </li>
         </ul>
       </div>
 
       <!-- Built to Convert -->
-      <div class="card-1" style="padding:36px;display:flex;flex-direction:column;">
-        <div style="width:56px;height:56px;border-radius:14px;background:#F1F5F9;display:flex;align-items:center;justify-content:center;margin-bottom:24px;">
-          <i data-lucide="trending-up" style="width:28px;height:28px;color:#0F172A;"></i>
+      <div class="card-dk" style="padding:36px;display:flex;flex-direction:column;">
+        <div style="width:52px;height:52px;border-radius:13px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:22px;">
+          <i data-lucide="trending-up" style="width:26px;height:26px;color:#f5f5f5;"></i>
         </div>
-        <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:700;color:#0F172A;margin-bottom:12px;">Built to Convert</h3>
-        <p style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;color:#475569;margin-bottom:20px;">
+        <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;font-weight:700;color:#f5f5f5;margin-bottom:10px;">Built to Convert</h3>
+        <p style="font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;color:rgba(245,245,245,0.45);margin-bottom:20px;">
           Not just eye candy. Every design is intentionally engineered with direct WhatsApp integrations, contact inquiries, clear calls to action, and search indexing.
         </p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:auto;">
           <li class="check-item">
-            <span class="check-dot"><i data-lucide="check" style="width:12px;height:12px;color:#17B978;stroke-width:3;"></i></span>
-            <span style="font-family:'Inter',sans-serif;font-size:14px;color:#0F172A;">Mobile-first user journeys</span>
+            <span class="check-dot"><i data-lucide="check" style="width:11px;height:11px;color:#17B978;stroke-width:3;"></i></span>
+            <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.6);">Mobile-first user journeys</span>
           </li>
           <li class="check-item">
-            <span class="check-dot"><i data-lucide="check" style="width:12px;height:12px;color:#17B978;stroke-width:3;"></i></span>
-            <span style="font-family:'Inter',sans-serif;font-size:14px;color:#0F172A;">Optimized conversion flows</span>
+            <span class="check-dot"><i data-lucide="check" style="width:11px;height:11px;color:#17B978;stroke-width:3;"></i></span>
+            <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.6);">Optimized conversion flows</span>
           </li>
         </ul>
       </div>
@@ -504,84 +627,110 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════════════
-     4. PRICING
-═══════════════════════════════════════════════ -->
-<section id="pricing" style="background:#F8FAFC;" class="section-pad">
+<!-- ═══════════════════════════════════════════
+     ZERO-RISK PLEDGE BANNER (above pricing)
+═══════════════════════════════════════════ -->
+<div style="background:#0a0a0a;padding:0 24px 0;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 0 0;">
+    <div style="background:linear-gradient(100deg,rgba(23,185,120,0.06) 0%,rgba(22,82,240,0.06) 100%);border:1px solid rgba(23,185,120,0.2);border-radius:16px;padding:24px 32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+      <!-- Icon -->
+      <div style="width:44px;height:44px;border-radius:11px;background:rgba(23,185,120,0.12);border:1px solid rgba(23,185,120,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <i data-lucide="shield-check" style="width:22px;height:22px;color:#17B978;"></i>
+      </div>
+      <!-- Text -->
+      <div style="flex:1;min-width:200px;">
+        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#17B978;margin-bottom:4px;">Our Zero-Risk Pledge</p>
+        <p style="font-family:'Inter',sans-serif;font-size:14px;color:rgba(245,245,245,0.6);line-height:1.6;">
+          If you don't love the website we construct for you, you walk away with zero strings, zero fees, zero obligations.
+        </p>
+      </div>
+      <!-- CTA -->
+      <a href="#contact" class="btn-accent" style="padding:11px 20px;font-size:13px;border-radius:9px;flex-shrink:0;white-space:nowrap;">
+        Experience Risk-Free
+        <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     5. PRICING
+═══════════════════════════════════════════ -->
+<section id="pricing" style="background:#0a0a0a;padding-top:48px;" class="section-pad">
   <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
 
+    <div class="section-label" style="margin-bottom:48px;">Zero Surprises</div>
     <div style="text-align:center;max-width:640px;margin:0 auto 64px;">
-      <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#17B978;">Zero Surprises</span>
-      <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-0.025em;color:#0F172A;margin:12px 0;">Once You're Ready to Go Live</h2>
-      <p style="font-family:'Inter',sans-serif;font-size:18px;line-height:1.7;color:#475569;">
+      <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-0.025em;color:#f5f5f5;margin-bottom:16px;">Once You're Ready to Go Live</h2>
+      <p style="font-family:'Inter',sans-serif;font-size:17px;line-height:1.7;color:rgba(245,245,245,0.45);">
         Remember: your build and preview are 100% free. You only pay if you are completely thrilled with what we build and want it live on the internet.
       </p>
     </div>
 
     <div style="max-width:560px;margin:0 auto;position:relative;">
       <!-- Badge -->
-      <div style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);z-index:2;white-space:nowrap;background:#17B978;color:#FFFFFF;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:8px 20px;border-radius:999px;box-shadow:0 4px 12px rgba(23,185,120,0.35);">
+      <div style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);z-index:2;white-space:nowrap;background:#17B978;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:7px 18px;border-radius:999px;box-shadow:0 4px 16px rgba(23,185,120,0.4);">
         Most Popular · Zero Risk
       </div>
 
       <div class="pricing-card" style="padding:40px 36px 36px;">
         <!-- Title -->
-        <div style="text-align:center;padding-bottom:28px;border-bottom:1px solid #E2E8F0;margin-bottom:28px;">
-          <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:700;color:#0F172A;">Complete Business Launch</h3>
-          <p style="font-family:'Inter',sans-serif;font-size:14px;color:#94A3B8;margin-top:6px;">Full professional setup, hosting, and ongoing peace of mind</p>
+        <div style="text-align:center;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:28px;">
+          <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:700;color:#f5f5f5;">Complete Business Launch</h3>
+          <p style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.35);margin-top:6px;">Full professional setup, hosting, and ongoing peace of mind</p>
           <div style="margin-top:24px;">
             <div style="display:flex;align-items:baseline;justify-content:center;gap:8px;flex-wrap:wrap;">
-              <span style="font-family:'Inter',sans-serif;font-size:15px;color:#94A3B8;">Setup Fee:</span>
-              <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:40px;font-weight:800;color:#0F172A;letter-spacing:-0.03em;">₦30,000</span>
-              <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:#17B978;text-transform:uppercase;letter-spacing:0.05em;">one-time</span>
+              <span style="font-family:'Inter',sans-serif;font-size:14px;color:rgba(245,245,245,0.35);">Setup Fee:</span>
+              <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:40px;font-weight:800;color:#f5f5f5;letter-spacing:-0.03em;">₦30,000</span>
+              <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;color:#17B978;text-transform:uppercase;letter-spacing:0.05em;">one-time</span>
             </div>
-            <p style="font-family:'Inter',sans-serif;font-size:13px;color:#94A3B8;font-style:italic;margin-top:6px;">Domain configuration, DNS &amp; production deployment</p>
+            <p style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(245,245,245,0.3);font-style:italic;margin-top:6px;">Domain configuration, DNS &amp; production deployment</p>
           </div>
-          <div style="margin-top:16px;display:inline-block;background:#EFF6FF;border:1px solid #DBEAFE;padding:10px 18px;border-radius:10px;">
-            <span style="font-family:'Inter',sans-serif;font-size:14px;color:#475569;">Monthly Hosting &amp; Support:</span>
-            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:#1652F0;margin-left:6px;">₦10,000 – ₦20,000/mo</span>
+          <div style="margin-top:16px;display:inline-block;background:rgba(22,82,240,0.08);border:1px solid rgba(22,82,240,0.2);padding:10px 18px;border-radius:10px;">
+            <span style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.4);">Monthly Hosting &amp; Support:</span>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;color:#1652F0;margin-left:6px;">₦10,000 – ₦20,000/mo</span>
           </div>
         </div>
 
         <!-- Checklist -->
-        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#94A3B8;margin-bottom:16px;">Everything Included:</p>
+        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(245,245,245,0.25);margin-bottom:16px;">Everything Included:</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
           <li class="check-item">
-            <span class="check-dot"><i data-lucide="check" style="width:12px;height:12px;color:#17B978;stroke-width:3;"></i></span>
-            <span style="font-family:'Inter',sans-serif;font-size:15px;color:#0F172A;"><strong>Custom domain setup</strong> (.com, .ng, or your choice)</span>
+            <span class="check-dot"><i data-lucide="check" style="width:11px;height:11px;color:#17B978;stroke-width:3;"></i></span>
+            <span style="font-family:'Inter',sans-serif;font-size:14px;color:rgba(245,245,245,0.7);"><strong style="color:#f5f5f5;">Custom domain setup</strong> (.com, .ng, or your choice)</span>
           </li>
           <li class="check-item">
-            <span class="check-dot"><i data-lucide="check" style="width:12px;height:12px;color:#17B978;stroke-width:3;"></i></span>
-            <span style="font-family:'Inter',sans-serif;font-size:15px;color:#0F172A;"><strong>High-speed hosting</strong> with 99.9% uptime guarantee</span>
+            <span class="check-dot"><i data-lucide="check" style="width:11px;height:11px;color:#17B978;stroke-width:3;"></i></span>
+            <span style="font-family:'Inter',sans-serif;font-size:14px;color:rgba(245,245,245,0.7);"><strong style="color:#f5f5f5;">High-speed hosting</strong> with 99.9% uptime guarantee</span>
           </li>
           <li class="check-item">
-            <span class="check-dot"><i data-lucide="check" style="width:12px;height:12px;color:#17B978;stroke-width:3;"></i></span>
-            <span style="font-family:'Inter',sans-serif;font-size:15px;color:#0F172A;"><strong>100% mobile-responsive</strong> fluid design across all devices</span>
+            <span class="check-dot"><i data-lucide="check" style="width:11px;height:11px;color:#17B978;stroke-width:3;"></i></span>
+            <span style="font-family:'Inter',sans-serif;font-size:14px;color:rgba(245,245,245,0.7);"><strong style="color:#f5f5f5;">100% mobile-responsive</strong> fluid design across all devices</span>
           </li>
           <li class="check-item">
-            <span class="check-dot"><i data-lucide="check" style="width:12px;height:12px;color:#17B978;stroke-width:3;"></i></span>
-            <span style="font-family:'Inter',sans-serif;font-size:15px;color:#0F172A;"><strong>Direct WhatsApp CTA</strong> instant customer chat integration</span>
+            <span class="check-dot"><i data-lucide="check" style="width:11px;height:11px;color:#17B978;stroke-width:3;"></i></span>
+            <span style="font-family:'Inter',sans-serif;font-size:14px;color:rgba(245,245,245,0.7);"><strong style="color:#f5f5f5;">Direct WhatsApp CTA</strong> instant customer chat integration</span>
           </li>
           <li class="check-item">
-            <span class="check-dot"><i data-lucide="check" style="width:12px;height:12px;color:#17B978;stroke-width:3;"></i></span>
-            <span style="font-family:'Inter',sans-serif;font-size:15px;color:#0F172A;"><strong>Custom contact &amp; lead capture form</strong> directly to your email</span>
+            <span class="check-dot"><i data-lucide="check" style="width:11px;height:11px;color:#17B978;stroke-width:3;"></i></span>
+            <span style="font-family:'Inter',sans-serif;font-size:14px;color:rgba(245,245,245,0.7);"><strong style="color:#f5f5f5;">Custom contact &amp; lead capture form</strong> directly to your email</span>
           </li>
           <li class="check-item">
-            <span class="check-dot"><i data-lucide="check" style="width:12px;height:12px;color:#17B978;stroke-width:3;"></i></span>
-            <span style="font-family:'Inter',sans-serif;font-size:15px;color:#0F172A;"><strong>Basic SEO &amp; Google search</strong> engine indexing</span>
+            <span class="check-dot"><i data-lucide="check" style="width:11px;height:11px;color:#17B978;stroke-width:3;"></i></span>
+            <span style="font-family:'Inter',sans-serif;font-size:14px;color:rgba(245,245,245,0.7);"><strong style="color:#f5f5f5;">Basic SEO &amp; Google search</strong> engine indexing</span>
           </li>
           <li class="check-item">
-            <span class="check-dot"><i data-lucide="check" style="width:12px;height:12px;color:#17B978;stroke-width:3;"></i></span>
-            <span style="font-family:'Inter',sans-serif;font-size:15px;color:#0F172A;"><strong>Monthly minor edits</strong>, image swaps &amp; text maintenance</span>
+            <span class="check-dot"><i data-lucide="check" style="width:11px;height:11px;color:#17B978;stroke-width:3;"></i></span>
+            <span style="font-family:'Inter',sans-serif;font-size:14px;color:rgba(245,245,245,0.7);"><strong style="color:#f5f5f5;">Monthly minor edits</strong>, image swaps &amp; text maintenance</span>
           </li>
         </ul>
 
-        <!-- CTA -->
         <a href="#contact" class="btn-primary" style="width:100%;padding:16px;font-size:16px;border-radius:12px;">
           Get Started Free
-          <i data-lucide="arrow-right" style="width:20px;height:20px;"></i>
+          <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
         </a>
-        <p style="font-family:'Inter',sans-serif;font-size:13px;text-align:center;color:#94A3B8;margin-top:12px;">
+        <p style="font-family:'Inter',sans-serif;font-size:12px;text-align:center;color:rgba(245,245,245,0.3);margin-top:12px;">
           No start-up fee. Preview first, pay only after you approve.
         </p>
       </div>
@@ -591,114 +740,108 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════════════
-     5. CONTACT / CTA
-═══════════════════════════════════════════════ -->
-<section id="contact" style="background:#FFFFFF;" class="section-pad">
+<!-- ═══════════════════════════════════════════
+     6. CONTACT
+═══════════════════════════════════════════ -->
+<section id="contact" style="background:#0d0d0f;" class="section-pad">
   <div style="max-width:1280px;margin:0 auto;padding:0 24px;">
+
+    <div class="section-label" style="margin-bottom:48px;">Zero Financial Obligation</div>
+
     <div class="contact-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
 
-      <!-- Left col -->
+      <!-- Left -->
       <div>
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(23,185,120,0.08);border:1px solid rgba(23,185,120,0.2);border-radius:999px;padding:6px 14px;margin-bottom:20px;">
-          <span class="pulse-dot" style="display:inline-block;width:8px;height:8px;border-radius:999px;background:#17B978;flex-shrink:0;"></span>
-          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:#17B978;letter-spacing:0.04em;text-transform:uppercase;">Zero Financial Obligation</span>
-        </div>
-        <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:700;letter-spacing:-0.025em;color:#0F172A;margin-bottom:16px;">Want Your Free Website Built?</h2>
-        <p style="font-family:'Inter',sans-serif;font-size:17px;line-height:1.7;color:#475569;margin-bottom:32px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(26px,3.5vw,42px);font-weight:700;letter-spacing:-0.025em;color:#f5f5f5;margin-bottom:16px;">Want Your Free Website Built?</h2>
+        <p style="font-family:'Inter',sans-serif;font-size:17px;line-height:1.7;color:rgba(245,245,245,0.45);margin-bottom:32px;">
           Fill out this quick brief and we will build a riskless, ready-to-test preview for your brand. If you don't love it, you don't pay. It's truly that straightforward.
         </p>
 
-        <!-- Mini FAQ -->
         <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:36px;">
           <div style="display:flex;gap:12px;align-items:flex-start;">
-            <i data-lucide="help-circle" style="width:20px;height:20px;color:#1652F0;flex-shrink:0;margin-top:2px;"></i>
+            <i data-lucide="help-circle" style="width:18px;height:18px;color:#1652F0;flex-shrink:0;margin-top:2px;"></i>
             <div>
-              <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:#0F172A;margin-bottom:4px;">What happens after I submit?</p>
-              <p style="font-family:'Inter',sans-serif;font-size:14px;color:#475569;line-height:1.6;">We review your business details and send you a link to your interactive preview within 48-72 hours.</p>
+              <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;color:#f5f5f5;margin-bottom:4px;">What happens after I submit?</p>
+              <p style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.4);line-height:1.65;">We review your business details and send you a link to your interactive preview within 48-72 hours.</p>
             </div>
           </div>
           <div style="display:flex;gap:12px;align-items:flex-start;">
-            <i data-lucide="lock-open" style="width:20px;height:20px;color:#17B978;flex-shrink:0;margin-top:2px;"></i>
+            <i data-lucide="lock-open" style="width:18px;height:18px;color:#17B978;flex-shrink:0;margin-top:2px;"></i>
             <div>
-              <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:#0F172A;margin-bottom:4px;">Are there any hidden costs?</p>
-              <p style="font-family:'Inter',sans-serif;font-size:14px;color:#475569;line-height:1.6;">None. If you choose not to publish the website, you owe nothing — we part as friends.</p>
+              <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;color:#f5f5f5;margin-bottom:4px;">Are there any hidden costs?</p>
+              <p style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.4);line-height:1.65;">None. If you choose not to publish the website, you owe nothing — we part as friends.</p>
             </div>
           </div>
         </div>
 
-        <!-- Direct reach-out -->
-        <div style="padding-top:24px;border-top:1px solid #E2E8F0;">
-          <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#94A3B8;margin-bottom:14px;">Or reach out directly</p>
+        <div style="padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);">
+          <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(245,245,245,0.25);margin-bottom:14px;">Or reach out directly</p>
           <div style="display:flex;flex-wrap:wrap;gap:12px;">
             <a href="https://wa.me/2349035231402" target="_blank" rel="noopener noreferrer" class="btn-accent">
-              <i data-lucide="message-circle" style="width:18px;height:18px;color:#FFFFFF;"></i>
+              <i data-lucide="message-circle" style="width:16px;height:16px;color:#fff;"></i>
               Chat on WhatsApp
             </a>
-            <a href="mailto:asqekcompany@gmail.com" style="display:inline-flex;align-items:center;gap:8px;background:#FFFFFF;border:1px solid #E2E8F0;color:#0F172A;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;padding:12px 18px;border-radius:10px;text-decoration:none;transition:background 0.15s,border-color 0.15s;">
-              <i data-lucide="mail" style="width:18px;height:18px;color:#1652F0;"></i>
+            <a href="mailto:asqekcompany@gmail.com" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:#f5f5f5;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;padding:12px 16px;border-radius:10px;text-decoration:none;transition:background 0.15s;">
+              <i data-lucide="mail" style="width:16px;height:16px;color:#1652F0;"></i>
               asqekcompany@gmail.com
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Right col: form -->
-      <div class="card-2" style="padding:40px;border-radius:24px;">
+      <!-- Right: form -->
+      <div style="background:#141416;border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:36px;box-shadow:0 24px 48px rgba(0,0,0,0.4);">
         <form id="contact-form" onsubmit="handleFormSubmit(event)">
-          <div style="display:flex;flex-direction:column;gap:20px;">
+          <div style="display:flex;flex-direction:column;gap:18px;">
 
             <div>
-              <label for="business_name" style="display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;color:#0F172A;margin-bottom:6px;">
+              <label for="business_name" style="display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:rgba(245,245,245,0.7);margin-bottom:6px;">
                 Business Name <span style="color:#EF4444;">*</span>
               </label>
               <input class="form-input" type="text" id="business_name" name="business_name" placeholder="e.g. Apex Logistics, Zuri Fashion, Dr. Adeyemi Clinic" required/>
             </div>
 
             <div>
-              <label for="city" style="display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;color:#0F172A;margin-bottom:6px;">
+              <label for="city" style="display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:rgba(245,245,245,0.7);margin-bottom:6px;">
                 What City / Where My Business Is Based <span style="color:#EF4444;">*</span>
               </label>
               <input class="form-input" type="text" id="city" name="city" placeholder="e.g. Lagos, Abuja, Port Harcourt, Kano" required/>
             </div>
 
             <div>
-              <label for="description" style="display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;color:#0F172A;margin-bottom:6px;">
+              <label for="description" style="display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:rgba(245,245,245,0.7);margin-bottom:6px;">
                 Client Description of What I Need
               </label>
               <textarea class="form-input" id="description" name="description" rows="4" placeholder="Tell us key pages needed — Home, Services, Gallery, WhatsApp booking button or anything similar you'd like included" style="resize:vertical;min-height:100px;"></textarea>
             </div>
 
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
               <div>
-                <label for="best_time" style="display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;color:#0F172A;margin-bottom:6px;">
-                  Best Days/Times for a Call
-                </label>
+                <label for="best_time" style="display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:rgba(245,245,245,0.7);margin-bottom:6px;">Best Days/Times for a Call</label>
                 <input class="form-input" type="text" id="best_time" name="best_time" placeholder="Weekdays Morning 9am-12pm"/>
               </div>
               <div>
-                <label for="phone" style="display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;color:#0F172A;margin-bottom:6px;">
-                  WhatsApp Phone Number <span style="color:#EF4444;">*</span>
+                <label for="phone" style="display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:rgba(245,245,245,0.7);margin-bottom:6px;">
+                  WhatsApp Number <span style="color:#EF4444;">*</span>
                 </label>
                 <input class="form-input" type="tel" id="phone" name="phone" placeholder="0803 234 5678" required/>
               </div>
             </div>
 
-            <button type="submit" class="btn-primary" style="width:100%;padding:16px;font-size:16px;border-radius:12px;">
+            <button type="submit" class="btn-primary" style="width:100%;padding:16px;font-size:15px;border-radius:11px;margin-top:4px;">
               Claim My Free Website Build
-              <i data-lucide="send" style="width:18px;height:18px;"></i>
+              <i data-lucide="send" style="width:16px;height:16px;"></i>
             </button>
 
           </div>
         </form>
 
-        <!-- Success state -->
-        <div id="form-success" style="display:none;margin-top:20px;background:rgba(23,185,120,0.08);border:1px solid rgba(23,185,120,0.25);border-radius:12px;padding:20px;text-align:center;">
+        <div id="form-success" style="display:none;margin-top:20px;background:rgba(23,185,120,0.07);border:1px solid rgba(23,185,120,0.2);border-radius:12px;padding:20px;text-align:center;">
           <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;">
-            <i data-lucide="check-circle-2" style="width:22px;height:22px;color:#17B978;"></i>
-            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:700;color:#0F172A;">Request Received!</span>
+            <i data-lucide="check-circle-2" style="width:20px;height:20px;color:#17B978;"></i>
+            <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:#f5f5f5;">Request Received!</span>
           </div>
-          <p style="font-family:'Inter',sans-serif;font-size:14px;color:#475569;">We'll review your details and begin crafting your free preview. Expect a WhatsApp message or preview link within 48-72 hours.</p>
+          <p style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.45);">We'll review your details and begin crafting your free preview. Expect a WhatsApp message or preview link within 48-72 hours.</p>
         </div>
       </div>
 
@@ -709,61 +852,65 @@
 </main>
 
 
-<!-- ═══════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════
      FOOTER
-═══════════════════════════════════════════════ -->
-<footer style="background:#F8FAFC;border-top:1px solid #E2E8F0;">
+═══════════════════════════════════════════ -->
+<footer style="background:#080809;border-top:1px solid rgba(255,255,255,0.05);">
   <div style="max-width:1280px;margin:0 auto;padding:64px 24px 0;">
-    <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid #E2E8F0;">
+    <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.05);">
 
       <!-- Brand -->
       <div>
         <a href="#hero" style="text-decoration:none;display:inline-flex;align-items:center;margin-bottom:16px;">
-          <svg style="height:32px;width:auto;" viewBox="0 0 340 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Asqek">
+          <svg style="height:30px;width:auto;" viewBox="0 0 340 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Asqek">
             <text x="0" y="78" style="font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:100px;">
-              <tspan style="fill:#17B978;">A</tspan><tspan style="fill:#1652F0;">sqek</tspan>
+              <tspan style="fill:#17B978;">A</tspan><tspan style="fill:#ffffff;">sqek</tspan>
             </text>
           </svg>
         </a>
-        <p style="font-family:'Inter',sans-serif;font-size:15px;color:#475569;line-height:1.65;max-width:300px;">Professional websites, built simply, built free first.</p>
-        <div style="display:flex;gap:10px;margin-top:20px;">
-          <a href="#" aria-label="Twitter" style="width:36px;height:36px;border-radius:8px;background:#E2E8F0;display:flex;align-items:center;justify-content:center;color:#475569;text-decoration:none;">
-            <i data-lucide="at-sign" style="width:17px;height:17px;color:#475569;"></i>
+        <!-- Updated footer tagline -->
+        <p style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.3);line-height:1.75;max-width:320px;">
+          An haute-couture digital salon constructing uncompromising digital flagships, high-assurance web architecture, and strategic venture interfaces for luxury and technology brands.
+        </p>
+        <div style="display:flex;gap:8px;margin-top:20px;">
+          <a href="#" aria-label="Twitter" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background 0.15s;">
+            <i data-lucide="at-sign" style="width:15px;height:15px;color:rgba(245,245,245,0.4);"></i>
           </a>
-          <a href="#" aria-label="LinkedIn" style="width:36px;height:36px;border-radius:8px;background:#E2E8F0;display:flex;align-items:center;justify-content:center;color:#475569;text-decoration:none;">
-            <i data-lucide="briefcase" style="width:17px;height:17px;color:#475569;"></i>
+          <a href="#" aria-label="LinkedIn" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;text-decoration:none;">
+            <i data-lucide="briefcase" style="width:15px;height:15px;color:rgba(245,245,245,0.4);"></i>
           </a>
-          <a href="#" aria-label="Instagram" style="width:36px;height:36px;border-radius:8px;background:#E2E8F0;display:flex;align-items:center;justify-content:center;color:#475569;text-decoration:none;">
-            <i data-lucide="camera" style="width:17px;height:17px;color:#475569;"></i>
+          <a href="#" aria-label="Instagram" style="width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;text-decoration:none;">
+            <i data-lucide="camera" style="width:15px;height:15px;color:rgba(245,245,245,0.4);"></i>
           </a>
-          <a href="https://wa.me/2349035231402" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" style="width:36px;height:36px;border-radius:8px;background:#17B978;display:flex;align-items:center;justify-content:center;text-decoration:none;">
-            <i data-lucide="message-circle" style="width:17px;height:17px;color:#FFFFFF;"></i>
+          <a href="https://wa.me/2349035231402" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" style="width:34px;height:34px;border-radius:8px;background:rgba(23,185,120,0.12);border:1px solid rgba(23,185,120,0.2);display:flex;align-items:center;justify-content:center;text-decoration:none;">
+            <i data-lucide="message-circle" style="width:15px;height:15px;color:#17B978;"></i>
           </a>
         </div>
       </div>
 
       <!-- Navigation -->
       <div>
-        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;color:#0F172A;margin-bottom:16px;">Navigation</p>
+        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:rgba(245,245,245,0.3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:16px;">Navigation</p>
         <nav style="display:flex;flex-direction:column;gap:10px;">
-          <a href="#hero"         style="font-family:'Inter',sans-serif;font-size:14px;color:#475569;text-decoration:none;">Home</a>
-          <a href="#how-it-works" style="font-family:'Inter',sans-serif;font-size:14px;color:#475569;text-decoration:none;">How It Works</a>
-          <a href="#why-us"       style="font-family:'Inter',sans-serif;font-size:14px;color:#475569;text-decoration:none;">Why Us</a>
-          <a href="#pricing"      style="font-family:'Inter',sans-serif;font-size:14px;color:#475569;text-decoration:none;">Pricing</a>
-          <a href="#contact"      style="font-family:'Inter',sans-serif;font-size:14px;color:#475569;text-decoration:none;">Contact</a>
+          <a href="#hero"         style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.45);text-decoration:none;transition:color 0.15s;">Home</a>
+          <a href="#manifesto"    style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.45);text-decoration:none;transition:color 0.15s;">Manifesto</a>
+          <a href="#how-it-works" style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.45);text-decoration:none;transition:color 0.15s;">The Process</a>
+          <a href="#why-us"       style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.45);text-decoration:none;transition:color 0.15s;">Why Us</a>
+          <a href="#pricing"      style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.45);text-decoration:none;transition:color 0.15s;">Pricing</a>
+          <a href="#contact"      style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.45);text-decoration:none;transition:color 0.15s;">Contact</a>
         </nav>
       </div>
 
       <!-- Connect -->
       <div>
-        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;color:#0F172A;margin-bottom:16px;">Connect</p>
+        <p style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:rgba(245,245,245,0.3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:16px;">Connect</p>
         <div style="display:flex;flex-direction:column;gap:12px;">
-          <a href="https://wa.me/2349035231402" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:14px;color:#475569;text-decoration:none;">
-            <i data-lucide="message-circle" style="width:16px;height:16px;color:#17B978;"></i>
+          <a href="https://wa.me/2349035231402" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.45);text-decoration:none;">
+            <i data-lucide="message-circle" style="width:14px;height:14px;color:#17B978;"></i>
             WhatsApp
           </a>
-          <a href="mailto:asqekcompany@gmail.com" style="display:flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:14px;color:#475569;text-decoration:none;">
-            <i data-lucide="mail" style="width:16px;height:16px;color:#1652F0;"></i>
+          <a href="mailto:asqekcompany@gmail.com" style="display:flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-size:13px;color:rgba(245,245,245,0.45);text-decoration:none;">
+            <i data-lucide="mail" style="width:14px;height:14px;color:#1652F0;"></i>
             asqekcompany@gmail.com
           </a>
         </div>
@@ -772,71 +919,72 @@
     </div>
 
     <!-- Bottom bar -->
-    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:24px 0;">
-      <p style="font-family:'Inter',sans-serif;font-size:13px;color:#94A3B8;">© Asqek. All rights reserved.</p>
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:22px 0;">
+      <p style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(245,245,245,0.2);">© Asqek. All rights reserved.</p>
       <div style="display:flex;gap:20px;">
-        <a href="#" style="font-family:'Inter',sans-serif;font-size:13px;color:#94A3B8;text-decoration:none;">Privacy Policy</a>
-        <a href="#" style="font-family:'Inter',sans-serif;font-size:13px;color:#94A3B8;text-decoration:none;">Terms of Service</a>
+        <a href="#" style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(245,245,245,0.2);text-decoration:none;">Privacy Policy</a>
+        <a href="#" style="font-family:'Inter',sans-serif;font-size:12px;color:rgba(245,245,245,0.2);text-decoration:none;">Terms of Service</a>
       </div>
     </div>
   </div>
 </footer>
 
 
-<!-- ═══════════════════════════════════════════════
-     FLOATING WHATSAPP BUTTON
-═══════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════
+     FLOATING WHATSAPP
+═══════════════════════════════════════════ -->
 <a href="https://wa.me/2349035231402" target="_blank" rel="noopener noreferrer" aria-label="Chat with Asqek on WhatsApp"
-   style="position:fixed;bottom:24px;right:24px;z-index:40;display:flex;align-items:center;gap:8px;background:#17B978;color:#FFFFFF;padding:14px 20px;border-radius:999px;box-shadow:0 8px 24px rgba(23,185,120,0.4);text-decoration:none;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;transition:transform 0.15s,box-shadow 0.15s;"
-   onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 12px 32px rgba(23,185,120,0.5)';"
-   onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 8px 24px rgba(23,185,120,0.4)';">
-  <i data-lucide="message-circle" style="width:22px;height:22px;color:#FFFFFF;"></i>
+   style="position:fixed;bottom:24px;right:24px;z-index:40;display:flex;align-items:center;gap:8px;background:#17B978;color:#fff;padding:13px 20px;border-radius:999px;box-shadow:0 8px 28px rgba(23,185,120,0.45);text-decoration:none;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;transition:transform 0.15s,box-shadow 0.15s;"
+   onmouseover="this.style.transform='scale(1.06)';this.style.boxShadow='0 12px 36px rgba(23,185,120,0.55)';"
+   onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 8px 28px rgba(23,185,120,0.45)';">
+  <i data-lucide="message-circle" style="width:20px;height:20px;color:#fff;"></i>
   <span>Chat With Us</span>
 </a>
 
 
-<!-- ═══════════════════════════════════════════════
-     JAVASCRIPT
-═══════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════
+     JS
+═══════════════════════════════════════════ -->
 <script>
-  // ── Initialise ALL Lucide SVG icons ──
+  // Render all Lucide icons
   lucide.createIcons();
 
-  // ── Mobile nav toggle ──
-  const navToggle = document.getElementById('nav-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  navToggle?.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-  mobileMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+  // Mobile nav
+  document.getElementById('nav-toggle')?.addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  });
+  document.getElementById('mobile-menu')?.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'))
+  );
 
-  // ── Scroll-aware nav shadow ──
+  // Scroll shadow
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').style.boxShadow =
-      window.scrollY > 20 ? '0 4px 20px rgba(15,23,42,0.06)' : 'none';
+      window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,0.4)' : 'none';
   });
 
-  // ── Active nav link via IntersectionObserver ──
+  // Active nav via scroll
   const navLinks = document.querySelectorAll('header .nav-link');
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
         navLinks.forEach(l => l.classList.remove('active'));
         navLinks.forEach(l => {
-          if (l.getAttribute('href') === '#' + entry.target.id) l.classList.add('active');
+          if (l.getAttribute('href') === '#' + e.target.id) l.classList.add('active');
         });
       }
     });
-  }, { threshold: 0.35 });
-  ['hero','how-it-works','why-us','pricing','contact'].forEach(id => {
+  }, { threshold: 0.3 });
+  ['hero','manifesto','how-it-works','why-us','pricing','contact'].forEach(id => {
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });
 
-  // ── Form submit ──
+  // Form submit
   function handleFormSubmit(e) {
     e.preventDefault();
     document.getElementById('contact-form').style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
-    // Re-run Lucide to render the success icon that just appeared
     lucide.createIcons();
   }
 </script>
